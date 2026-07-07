@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BB0FF6F52FFD6A5600110682 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BB0FF6D62FFAB2EB00110682 /* EggTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EggTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0FF6F52FFD6A5600110682 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = EggTimer;
 			packageProductDependencies = (
+				BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */,
 			);
 			productName = EggTimer;
 			productReference = BB0FF6D62FFAB2EB00110682 /* EggTimer.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = BB0FF6CD2FFAB2EB00110682;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BB0FF6F32FFD6A5600110682 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BB0FF6D72FFAB2EB00110682 /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BB0FF6F32FFD6A5600110682 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB0FF6F32FFD6A5600110682 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BB0FF6CE2FFAB2EB00110682 /* Project object */;
 }
