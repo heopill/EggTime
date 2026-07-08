@@ -1,0 +1,17 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "EggTimer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "반숙타이머"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

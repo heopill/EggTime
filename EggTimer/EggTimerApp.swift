@@ -9,9 +9,23 @@ import SwiftUI
 
 @main
 struct EggTimerApp: App {
+    @State private var showSplash = true
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if showSplash {
+                SplashView()
+                    .onAppear {
+                        /// 2초 후 메인 화면으로 전환
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                showSplash = false
+                            }
+                        }
+                    }
+            } else {
+                ContentView()
+            }
         }
     }
 }
