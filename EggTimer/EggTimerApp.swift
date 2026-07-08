@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct EggTimerApp: App {
@@ -24,7 +25,11 @@ struct EggTimerApp: App {
                         }
                     }
             } else {
-                ContentView()
+                TimerView(
+                    store: Store(initialState: TimerFeature.State()) {
+                        TimerFeature()
+                    }
+                )
             }
         }
     }
