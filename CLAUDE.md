@@ -1,0 +1,34 @@
+# EggTimer Project Rules
+
+## 기술 스택
+- SwiftUI + TCA (The Composable Architecture)
+
+## 코딩 컨벤션
+
+### 함수 주석
+- 함수 정의 위에 간략한 주석 설명을 추가한다.
+
+```swift
+/// 타이머를 시작한다
+func startTimer() {
+    ...
+}
+```
+
+### return문 작성 규칙
+- return문 위에 한 줄을 띄운다.
+- 단, 함수 본문이 return문 한 줄만 있는 경우에는 띄우지 않는다.
+
+```swift
+// Good - 다른 코드가 있으면 한 줄 띄우고 return
+func calculateTime() -> Int {
+    let base = 60
+
+    return base * multiplier
+}
+
+// Good - return문만 있으면 띄우지 않음
+func defaultTime() -> Int {
+    return 300
+}
+```
