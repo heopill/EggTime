@@ -10,7 +10,12 @@ struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
 
     var body: some View {
-        Text("설정 화면")
+        ZStack {
+            Color(hex: "FDFFC7")
+                .ignoresSafeArea()
+
+            Text("설정 화면")
+        }
     }
 }
 

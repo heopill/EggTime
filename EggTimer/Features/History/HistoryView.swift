@@ -10,7 +10,12 @@ struct HistoryView: View {
     @Bindable var store: StoreOf<HistoryFeature>
 
     var body: some View {
-        Text("기록 화면")
+        ZStack {
+            Color(hex: "FDFFC7")
+                .ignoresSafeArea()
+
+            Text("기록 화면")
+        }
     }
 }
 

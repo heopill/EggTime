@@ -11,11 +11,16 @@ struct TimerView: View {
 
     var body: some View {
         TabView(selection: $store.selectedTab) {
-            Text("타이머 화면")
-                .tabItem {
-                    Label("타이머", image: "Timer")
-                }
-                .tag(TimerFeature.Tab.timer)
+            ZStack {
+                Color(hex: "FDFFC7")
+                    .ignoresSafeArea()
+
+                Text("타이머 화면")
+            }
+            .tabItem {
+                Label("타이머", image: "Timer")
+            }
+            .tag(TimerFeature.Tab.timer)
 
             HistoryView(store: store.scope(state: \.history, action: \.history))
                 .tabItem {
@@ -40,3 +45,5 @@ struct TimerView: View {
         }
     )
 }
+
+// 기록 부분에서 삶은 달걀의 수를 사용자에게 입력받는 화면이 필요할 거 같음
