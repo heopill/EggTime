@@ -23,12 +23,15 @@ struct FontStyle {
 
 extension FontStyle {
     // MARK: - Pretendard-Regular (Body)
+    static let body12 = FontStyle(fontName: "Pretendard-Regular", fontSize: 12, lineHeightMultiple: 1.5) // Body XS
+    static let body14 = FontStyle(fontName: "Pretendard-Regular", fontSize: 14, lineHeightMultiple: 1.5) // Body S (알럿 설명글)
     static let body16 = FontStyle(fontName: "Pretendard-Regular", fontSize: 16, lineHeightMultiple: 1.5) // Body M
     static let body64 = FontStyle(fontName: "Pretendard-Regular", fontSize: 64, lineHeightMultiple: 1.3) // Body L (타이머 숫자)
 
     // MARK: - Pretendard-SemiBold (Title)
     static let title14 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 14, lineHeightMultiple: 1.5) // Title S (버튼 텍스트)
     static let title16 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 16, lineHeightMultiple: 1.5) // Title S Strong
+    static let title12 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 12, lineHeightMultiple: 1.5) // Title XS
     static let title20 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 20, lineHeightMultiple: 1.3) // Title M
     static let title32 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 32, lineHeightMultiple: 1.3) // Title L
 
