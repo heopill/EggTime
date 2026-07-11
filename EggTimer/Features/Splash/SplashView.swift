@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashView: View {
     var body: some View {
         ZStack {
-            Color(red: 0.99, green: 1, blue: 0.78)
+            Color(.background)
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
@@ -18,7 +18,7 @@ struct SplashView: View {
                 Text(String(localized: "EggTimer", table: "Splash"))
                     .fontStyle(.logo64)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
+                    .foregroundColor(Color("TextStrong"))
 
                 // 계란 이미지
                 Image("SplashImage")
