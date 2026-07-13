@@ -21,11 +21,11 @@ struct SplashView: View {
                     .foregroundColor(Color("TextStrong"))
 
                 // 계란 이미지
-                Image("SplashImage")
+                Image("EggTwo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 203, height: 170)
-                    .padding(.top, 40)
+                    .frame(width: 130, height: 190)
+                    .padding(.top, 5)
             }
         }
     }
