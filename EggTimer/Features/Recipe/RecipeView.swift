@@ -14,7 +14,7 @@ struct RecipeView: View {
             Color(.background)
                 .ignoresSafeArea()
 
-            Text("레시피 화면")
+            Text(String(localized: "Recipe Screen", table: "Recipe"))
         }
     }
 }

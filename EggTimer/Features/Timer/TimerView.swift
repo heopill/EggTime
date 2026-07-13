@@ -60,21 +60,21 @@ struct TimerView: View {
                 .ignoresSafeArea()
             }
             .tabItem {
-                Label("타이머", image: "Timer")
+                Label(String(localized: "Timer", table: "Timer"), image: "Timer")
             }
             .tag(TimerFeature.Tab.timer)
 
             // 레시피 메뉴
             RecipeView(store: store.scope(state: \.recipe, action: \.recipe))
                 .tabItem {
-                    Label("레시피", image: "Book")
+                    Label(String(localized: "Recipe", table: "Timer"), image: "Book")
                 }
                 .tag(TimerFeature.Tab.recipe)
 
             // 설정 메뉴
             SettingView(store: store.scope(state: \.setting, action: \.setting))
                 .tabItem {
-                    Label("설정", image: "Setting")
+                    Label(String(localized: "Settings", table: "Timer"), image: "Setting")
                 }
                 .tag(TimerFeature.Tab.setting)
         }
@@ -82,10 +82,10 @@ struct TimerView: View {
         .overlay {
             if store.isResetAlertPresented {
                 CustomAlertView(
-                    title: "초기화 이후에는\n취소할 수 없습니다.",
-                    message: "타이머를 초기화 하시겠습니까?",
-                    confirmTitle: "초기화 하기",
-                    cancelTitle: "취소",
+                    title: String(localized: "This cannot be undone\nafter resetting.", table: "Timer"),
+                    message: String(localized: "Reset the timer?", table: "Timer"),
+                    confirmTitle: String(localized: "Reset timer", table: "Timer"),
+                    cancelTitle: String(localized: "Cancel", table: "Timer"),
                     confirmAction: { store.send(.resetConfirmed) },
                     cancelAction: { store.send(.resetCancelled) }
                 )
@@ -115,17 +115,17 @@ struct TimerView: View {
         switch store.cookingState {
         case .idle:
             // 시작 전: 시작 버튼만 표시
-            TimerControlButton(iconName: "Play", title: "시작") {
+            TimerControlButton(iconName: "Play", title: String(localized: "Start", table: "Timer")) {
                 store.send(.startTapped)
             }
 
         case .running:
             // 진행 중: 일시정지 + 초기화
             HStack(spacing: 20) {
-                TimerControlButton(iconName: "Pause", title: "일시정지") {
+                TimerControlButton(iconName: "Pause", title: String(localized: "Pause", table: "Timer")) {
                     store.send(.pauseTapped)
                 }
-                TimerControlButton(iconName: "Restart", title: "초기화") {
+                TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
                     store.send(.resetTapped)
                 }
             }
@@ -133,10 +133,10 @@ struct TimerView: View {
         case .paused:
             // 일시정지: 재시작 + 초기화
             HStack(spacing: 20) {
-                TimerControlButton(iconName: "Play", title: "재시작") {
+                TimerControlButton(iconName: "Play", title: String(localized: "Resume", table: "Timer")) {
                     store.send(.resumeTapped)
                 }
-                TimerControlButton(iconName: "Restart", title: "초기화") {
+                TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
                     store.send(.resetTapped)
                 }
             }

@@ -1,0 +1,94 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "Hard-boiled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완벽한 완숙"
+          }
+        }
+      }
+    },
+    "Hard-boiled with a fully cooked yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 완전히 익은 반숙"
+          }
+        }
+      }
+    },
+    "Medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "적당한 반숙"
+          }
+        }
+      }
+    },
+    "Runny" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "흐르는 반숙"
+          }
+        }
+      }
+    },
+    "Soft" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "촉촉한 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a medium yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 적당히 익은 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a moist yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 촉촉한 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a runny yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 흐르는 반숙"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

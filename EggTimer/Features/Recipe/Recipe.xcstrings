@@ -1,0 +1,17 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "Recipe Screen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "레시피 화면"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

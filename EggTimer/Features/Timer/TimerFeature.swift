@@ -26,9 +26,9 @@ struct TimerFeature {
         // 상단 타이틀
         var title: String {
             switch cookingState {
-            case .idle: return "시작 버튼을 눌러주세요"
-            case .running: return "달걀이 익고 있어요!"
-            case .paused: return "이어서 계속 삶을 수 있어요"
+            case .idle: return String(localized: "Press the start button", table: "Timer")
+            case .running: return String(localized: "Your egg is cooking!", table: "Timer")
+            case .paused: return String(localized: "You can resume boiling", table: "Timer")
             }
         }
 

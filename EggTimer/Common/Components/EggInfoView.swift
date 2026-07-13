@@ -34,20 +34,20 @@ enum EggDoneness: Int, CaseIterable, Identifiable {
     // 익힘 정도 이름
     var title: String {
         switch self {
-        case .one: return "흐르는 반숙"
-        case .two: return "촉촉한 반숙"
-        case .three: return "적당한 반숙"
-        case .four: return "완벽한 완숙"
+        case .one: return String(localized: "Runny", table: "Common")
+        case .two: return String(localized: "Soft", table: "Common")
+        case .three: return String(localized: "Medium", table: "Common")
+        case .four: return String(localized: "Hard-boiled", table: "Common")
         }
     }
 
     // 익힘 정도별 설명글
     var description: String {
         switch self {
-        case .one: return "노른자가 흐르는 반숙"
-        case .two: return "노른자가 촉촉한 반숙"
-        case .three: return "노른자가 적당히 익은 반숙"
-        case .four: return "노른자가 완전히 익은 반숙"
+        case .one: return String(localized: "Soft-boiled with a runny yolk", table: "Common")
+        case .two: return String(localized: "Soft-boiled with a moist yolk", table: "Common")
+        case .three: return String(localized: "Soft-boiled with a medium yolk", table: "Common")
+        case .four: return String(localized: "Hard-boiled with a fully cooked yolk", table: "Common")
         }
     }
 
