@@ -11,10 +11,10 @@ struct SettingView: View {
 
     var body: some View {
         ZStack {
-            Color(hex: "FDFFC7")
+            Color(.background)
                 .ignoresSafeArea()
 
-            Text("설정 화면")
+            Text(String(localized: "Settings Screen", table: "Setting"))
         }
     }
 }

@@ -1,13 +1,13 @@
 {
   "sourceLanguage" : "ko",
   "strings" : {
-    "EggTimer" : {
+    "Recipe Screen" : {
       "extractionState" : "manual",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "에그타임"
+            "value" : "레시피 화면"
           }
         }
       }
