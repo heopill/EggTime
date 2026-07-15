@@ -16,7 +16,7 @@ struct SettingView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
-                    header
+                    AppBarView(title: String(localized: "Settings", table: "Setting"))
 
                     VStack(spacing: 16) {
                         soundSection
@@ -54,15 +54,6 @@ struct SettingView: View {
         case .contact:
             ContactView()
         }
-    }
-
-    // 화면 상단 타이틀
-    private var header: some View {
-        Text(String(localized: "Settings", table: "Setting"))
-            .fontStyle(.title20)
-            .foregroundColor(Color("TextNormal"))
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
     }
 
     // 사운드 설정 섹션
