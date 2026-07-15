@@ -18,6 +18,8 @@ struct RecipeOptionView: View {
     let isBookmarked: Bool
     // 북마크 버튼 탭 동작
     var onBookmarkTap: () -> Void = {}
+    // 카드 탭 동작 (레시피 상세로 이동)
+    var onTap: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -55,6 +57,8 @@ struct RecipeOptionView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: Color( "TextNormal").opacity(0.08), radius: 4)
+        .contentShape(Rectangle())
+        .onTapGesture(perform: onTap)
     }
 
     // 이미지 우측 상단의 북마크 토글 버튼
