@@ -57,6 +57,9 @@ struct RecipeView: View {
                     )
                 }
             }
+            .task {
+                store.send(.onAppear)
+            }
         }
     }
 }

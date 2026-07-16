@@ -26,17 +26,29 @@ struct RecipeFeature {
 
     enum Action: BindableAction {
         case binding(BindingAction<State>)
+        case onAppear
         case categorySelected(RecipeCategory)
         case bookmarkTapped(Recipe.ID)
         case recipeTapped(Recipe.ID)
         case backTapped
     }
 
+    @Dependency(\.bookmarks) var bookmarks
+
     var body: some Reducer<State, Action> {
         BindingReducer()
 
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                // 저장된 북마크를 불러와 반영한다
+                let savedIDs = bookmarks.load()
+                for id in savedIDs {
+                    state.recipes[id: id]?.isBookmarked = true
+                }
+
+                return .none
+
             case let .categorySelected(category):
                 state.selectedCategory = category
 
@@ -44,8 +56,12 @@ struct RecipeFeature {
 
             case let .bookmarkTapped(id):
                 state.recipes[id: id]?.isBookmarked.toggle()
+                // 현재 북마크된 id 전체를 UserDefaults에 저장한다
+                let bookmarkedIDs = Set(state.recipes.filter(\.isBookmarked).map(\.id))
 
-                return .none
+                return .run { [bookmarks] _ in
+                    bookmarks.save(bookmarkedIDs)
+                }
 
             case let .recipeTapped(id):
                 state.path.append(id)
