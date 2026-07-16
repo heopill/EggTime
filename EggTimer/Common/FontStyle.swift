@@ -33,6 +33,7 @@ extension FontStyle {
     static let title16 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 16, lineHeightMultiple: 1.5) // Title S Strong
     static let title12 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 12, lineHeightMultiple: 1.5) // Title XS
     static let title20 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 20, lineHeightMultiple: 1.3) // Title M
+    static let title24 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 24, lineHeightMultiple: 1.3) // Title (레시피 상세 제목)
     static let title32 = FontStyle(fontName: "Pretendard-SemiBold", fontSize: 32, lineHeightMultiple: 1.3) // Title L
 
     // MARK: - OkDanDan-Bold (App name)

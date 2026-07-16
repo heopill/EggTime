@@ -1,13 +1,57 @@
 {
   "sourceLanguage" : "ko",
   "strings" : {
-    "Recipe Screen" : {
+    "All" : {
       "extractionState" : "manual",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "레시피 화면"
+            "value" : "전체 보기"
+          }
+        }
+      }
+    },
+    "Easy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쉬운 난이도"
+          }
+        }
+      }
+    },
+    "Hard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어려운 난이도"
+          }
+        }
+      }
+    },
+    "Medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중간 난이도"
+          }
+        }
+      }
+    },
+    "Recipe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "레시피"
           }
         }
       }
