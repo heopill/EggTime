@@ -8,6 +8,7 @@ import ComposableArchitecture
 
 struct TimerView: View {
     @Bindable var store: StoreOf<TimerFeature>
+    @Environment(\.scenePhase) private var scenePhase
 
     // 좌우 회전 각도(20 → -20도) 및 한 방향에 걸리는 시간(초)
     private let waterPhases: [Double] = [30, -10]
@@ -93,6 +94,16 @@ struct TimerView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: store.isResetAlertPresented)
+        .task {
+            // 앱 첫 진입 시 알림 권한 요청
+            store.send(.onAppear)
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            // 백그라운드에서 돌아오면 남은 시간을 즉시 다시 계산한다
+            if newPhase == .active {
+                store.send(.timerTicked)
+            }
+        }
     }
 
     // 상단 타이틀 + 남은 시간 표시
