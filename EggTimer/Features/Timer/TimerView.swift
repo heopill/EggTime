@@ -8,6 +8,7 @@ import ComposableArchitecture
 
 struct TimerView: View {
     @Bindable var store: StoreOf<TimerFeature>
+    @Environment(\.scenePhase) private var scenePhase
 
     // 좌우 회전 각도(20 → -20도) 및 한 방향에 걸리는 시간(초)
     private let waterPhases: [Double] = [30, -10]
@@ -93,15 +94,25 @@ struct TimerView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: store.isResetAlertPresented)
+        .task {
+            // 앱 첫 진입 시 알림 권한 요청
+            store.send(.onAppear)
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            // 백그라운드에서 돌아오면 남은 시간을 즉시 다시 계산한다
+            if newPhase == .active {
+                store.send(.timerTicked)
+            }
+        }
     }
 
     // 상단 타이틀 + 남은 시간 표시
     private var timerSection: some View {
         VStack(spacing: 4) {
-            // 진행 중일 때 타이틀은 Primary(주황), 그 외에는 TextNormal 색상을 사용한다
+            // 진행 중이거나 완료됐을 때 타이틀은 Primary(주황), 그 외에는 TextNormal 색상을 사용한다
             Text(store.title)
                 .fontStyle(.title16)
-                .foregroundColor(store.isRunning ? Color("BrandPrimary") : Color("TextNormal"))
+                .foregroundColor(store.isTitleHighlighted ? Color("BrandPrimary") : Color("TextNormal"))
 
             Text(store.timeText)
                 .fontStyle(.body64)
@@ -138,6 +149,17 @@ struct TimerView: View {
                 }
                 TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
                     store.send(.resetTapped)
+                }
+            }
+
+        case .completed:
+            // 완료: 재시작 + 초기화
+            HStack(spacing: 20) {
+                TimerControlButton(iconName: "Play", title: String(localized: "Resume", table: "Timer")) {
+                    store.send(.restartTapped)
+                }
+                TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
+                    store.send(.resetConfirmed)
                 }
             }
         }
