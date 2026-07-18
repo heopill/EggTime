@@ -38,6 +38,7 @@ struct RecipeDetailView: View {
         }
         .background(Color("Button"))
         .toolbar(.hidden, for: .navigationBar)
+        .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden(true)
     }
 
