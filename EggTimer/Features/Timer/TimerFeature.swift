@@ -25,12 +25,18 @@ struct TimerFeature {
             return cookingState == .running
         }
 
+        // 타이틀을 Primary 색상으로 강조할지 여부 (진행 중 · 완료)
+        var isTitleHighlighted: Bool {
+            return cookingState == .running || cookingState == .completed
+        }
+
         // 상단 타이틀
         var title: String {
             switch cookingState {
             case .idle: return String(localized: "Press the start button", table: "Timer")
             case .running: return String(localized: "Your egg is cooking!", table: "Timer")
             case .paused: return String(localized: "You can resume boiling", table: "Timer")
+            case .completed: return String(localized: "Your egg is perfectly boiled!", table: "Timer")
             }
         }
 
@@ -42,9 +48,10 @@ struct TimerFeature {
 
     // 조리 상태
     enum CookingState: Equatable {
-        case idle    // 시작 전
-        case running // 진행 중
-        case paused  // 일시정지
+        case idle      // 시작 전
+        case running   // 진행 중
+        case paused    // 일시정지
+        case completed // 완료
     }
 
     nonisolated enum Tab: Equatable, Sendable {
@@ -59,6 +66,7 @@ struct TimerFeature {
         case startTapped
         case pauseTapped
         case resumeTapped
+        case restartTapped
         case resetTapped
         case resetConfirmed
         case resetCancelled
@@ -75,6 +83,9 @@ struct TimerFeature {
     nonisolated private enum CancelID {
         case timer
     }
+
+    // 일시정지 상태를 복원할 수 있는 최대 시간 (1시간). 이 시간을 넘기면 만료 처리한다
+    private static let pausedExpiration: TimeInterval = 60 * 60
 
     // 하위 리듀서(BindingReducer, Scope)를 조합하므로 반환 타입은 some Reducer<State, Action>를 사용한다
     var body: some Reducer<State, Action> {
@@ -110,6 +121,7 @@ struct TimerFeature {
                     guard remaining > 0 else {
                         // 앱이 꺼진 사이 이미 완료됨
                         state.deadline = nil
+                        state.cookingState = .completed
 
                         return .merge(authEffect, .run { [persistence] _ in persistence.clear() })
                     }
@@ -118,6 +130,13 @@ struct TimerFeature {
                     return .merge(authEffect, startTimer())
                 } else {
                     // 일시정지 상태이던 타이머
+                    // 일시정지 후 1시간이 지났으면 복원하지 않고 초기화한다
+                    if let pausedAt = saved.pausedAt,
+                       date.now.timeIntervalSince(pausedAt) > Self.pausedExpiration {
+                        state.remainingSeconds = state.selectedEgg.duration
+
+                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() })
+                    }
                     state.remainingSeconds = saved.remainingSeconds
                     state.cookingState = .paused
 
@@ -140,7 +159,7 @@ struct TimerFeature {
                 // 현재 남은 시간을 기준으로 목표 종료 시각을 정한다
                 state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
 
-                return .merge(startTimer(), saveEffect(state))
+                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
 
             case .pauseTapped:
                 // 카운트다운을 멈추고 일시정지 상태로 전환한다 (남은 시간을 정확히 계산해 유지)
@@ -150,14 +169,22 @@ struct TimerFeature {
                 state.cookingState = .paused
                 state.deadline = nil
 
-                return .merge(.cancel(id: CancelID.timer), saveEffect(state))
+                return .merge(.cancel(id: CancelID.timer), saveEffect(state), cancelNotificationEffect())
 
             case .resumeTapped:
                 // 일시정지된 지점의 남은 시간으로 목표 종료 시각을 다시 계산한다
                 state.cookingState = .running
                 state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
 
-                return .merge(startTimer(), saveEffect(state))
+                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
+
+            case .restartTapped:
+                // 완료된 타이머를 선택한 달걀 기준 시간으로 처음부터 다시 시작한다
+                state.remainingSeconds = state.selectedEgg.duration
+                state.cookingState = .running
+                state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+
+                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
 
             case .resetTapped:
                 // 초기화 확인 알럿을 띄운다
@@ -172,7 +199,7 @@ struct TimerFeature {
                 state.deadline = nil
                 state.isResetAlertPresented = false
 
-                return .merge(.cancel(id: CancelID.timer), clearEffect())
+                return .merge(.cancel(id: CancelID.timer), clearEffect(), cancelNotificationEffect())
 
             case .resetCancelled:
                 // 알럿만 닫고 현재 상태를 유지한다
@@ -189,6 +216,7 @@ struct TimerFeature {
 
                 guard state.remainingSeconds > 0 else {
                     state.deadline = nil
+                    state.cookingState = .completed
 
                     return .merge(.cancel(id: CancelID.timer), clearEffect())
                 }
@@ -206,7 +234,8 @@ struct TimerFeature {
         let snapshot = TimerSnapshot(
             eggRawValue: state.selectedEgg.rawValue,
             remainingSeconds: state.remainingSeconds,
-            deadline: state.deadline
+            deadline: state.deadline,
+            pausedAt: state.cookingState == .paused ? date.now : nil
         )
 
         return .run { [persistence] _ in
@@ -218,6 +247,20 @@ struct TimerFeature {
     private func clearEffect() -> Effect<Action> {
         return .run { [persistence] _ in
             persistence.clear()
+        }
+    }
+
+    // 완료 알림을 예약하는 이펙트
+    private func scheduleNotificationEffect(after seconds: Int) -> Effect<Action> {
+        return .run { [notifications] _ in
+            await notifications.scheduleCompletion(TimeInterval(seconds))
+        }
+    }
+
+    // 예약된 완료 알림을 취소하는 이펙트
+    private func cancelNotificationEffect() -> Effect<Action> {
+        return .run { [notifications] _ in
+            notifications.cancel()
         }
     }
 

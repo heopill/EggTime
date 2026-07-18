@@ -109,10 +109,10 @@ struct TimerView: View {
     // 상단 타이틀 + 남은 시간 표시
     private var timerSection: some View {
         VStack(spacing: 4) {
-            // 진행 중일 때 타이틀은 Primary(주황), 그 외에는 TextNormal 색상을 사용한다
+            // 진행 중이거나 완료됐을 때 타이틀은 Primary(주황), 그 외에는 TextNormal 색상을 사용한다
             Text(store.title)
                 .fontStyle(.title16)
-                .foregroundColor(store.isRunning ? Color("BrandPrimary") : Color("TextNormal"))
+                .foregroundColor(store.isTitleHighlighted ? Color("BrandPrimary") : Color("TextNormal"))
 
             Text(store.timeText)
                 .fontStyle(.body64)
@@ -149,6 +149,17 @@ struct TimerView: View {
                 }
                 TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
                     store.send(.resetTapped)
+                }
+            }
+
+        case .completed:
+            // 완료: 재시작 + 초기화
+            HStack(spacing: 20) {
+                TimerControlButton(iconName: "Play", title: String(localized: "Resume", table: "Timer")) {
+                    store.send(.restartTapped)
+                }
+                TimerControlButton(iconName: "Restart", title: String(localized: "Reset", table: "Timer")) {
+                    store.send(.resetConfirmed)
                 }
             }
         }

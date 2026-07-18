@@ -14,6 +14,8 @@ nonisolated struct TimerSnapshot: Codable, Equatable, Sendable {
     let remainingSeconds: Int
     // 진행 중이면 목표 종료 시각, 일시정지면 nil
     let deadline: Date?
+    // 일시정지된 시각 (만료 판단용), 진행 중이면 nil
+    let pausedAt: Date?
 }
 
 // 진행/일시정지 중인 타이머를 UserDefaults에 저장/복원한다
