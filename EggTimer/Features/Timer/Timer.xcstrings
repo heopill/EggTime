@@ -12,6 +12,17 @@
         }
       }
     },
+    "EggTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "에그타임"
+          }
+        }
+      }
+    },
     "Pause" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -151,6 +162,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "계란이 익고 있어요!"
+          }
+        }
+      }
+    },
+    "Your egg is perfectly boiled!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계란이 맛있게 삶아졌어요!"
           }
         }
       }
