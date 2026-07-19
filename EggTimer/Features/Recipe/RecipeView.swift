@@ -61,6 +61,19 @@ struct RecipeView: View {
                 store.send(.onAppear)
             }
         }
+        // 레시피 목록 · 상세 화면 모두에서 하단 안전영역 20pt 위에 토스트를 띄운다
+        .overlay(alignment: .bottom) {
+            if let message = store.toastMessage {
+                ToastMessageView(message: message)
+                    .padding(.bottom, 20)
+                    // 나타날 때는 빠르게, 사라질 때는 천천히 페이드 아웃한다
+                    .transition(.asymmetric(
+                        insertion: .opacity.animation(.easeIn(duration: 0.2)),
+                        removal: .opacity.animation(.easeOut(duration: 0.8))
+                    ))
+            }
+        }
+        .animation(.default, value: store.toastMessage)
     }
 }
 
