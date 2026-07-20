@@ -30,7 +30,9 @@ struct SettingView: View {
             }
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: SettingFeature.Route.self) { route in
+                // 세부 화면에서는 탭바를 숨긴다
                 destination(route)
+                    .toolbar(.hidden, for: .tabBar)
             }
         }
     }

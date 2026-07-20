@@ -16,6 +16,8 @@ struct AppBarView: View {
     var trailingIcon: String? = nil
     // 우측 버튼 탭 동작
     var onTrailingTap: () -> Void = {}
+    // 아이콘 표시 방식 (사진 위에 올리는 앱바만 .overlay 사용)
+    var iconStyle: IconButtonView.Style = .plain
 
     var body: some View {
         ZStack {
@@ -25,13 +27,13 @@ struct AppBarView: View {
 
             HStack {
                 if let leadingIcon {
-                    IconButtonView(iconName: leadingIcon, action: onLeadingTap)
+                    IconButtonView(iconName: leadingIcon, style: iconStyle, action: onLeadingTap)
                 }
 
                 Spacer()
 
                 if let trailingIcon {
-                    IconButtonView(iconName: trailingIcon, action: onTrailingTap)
+                    IconButtonView(iconName: trailingIcon, style: iconStyle, action: onTrailingTap)
                 }
             }
         }

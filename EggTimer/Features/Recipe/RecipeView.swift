@@ -22,7 +22,11 @@ struct RecipeView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
-                    AppBarView(title: String(localized: "Recipe", table: "Recipe"))
+                    AppBarView(
+                        title: String(localized: "Recipe", table: "Recipe"),
+                        trailingIcon: "BookmarkList",
+                        onTrailingTap: { store.send(.savedRecipesTapped) }
+                    )
 
                     RecipeCategoryView(selected: store.selectedCategory) { category in
                         store.send(.categorySelected(category))
@@ -48,17 +52,49 @@ struct RecipeView: View {
                     }
                 }
             }
-            .navigationDestination(for: Recipe.ID.self) { id in
-                if let recipe = store.recipes[id: id] {
-                    RecipeDetailView(
-                        recipe: recipe,
-                        onBack: { store.send(.backTapped) },
-                        onBookmarkTap: { store.send(.bookmarkTapped(id)) }
-                    )
-                }
+            .navigationDestination(for: RecipeFeature.Route.self) { route in
+                // 세부 화면에서는 탭바를 숨긴다
+                destination(route)
+                    .toolbar(.hidden, for: .tabBar)
             }
             .task {
                 store.send(.onAppear)
+            }
+        }
+        // 레시피 목록 · 상세 화면 모두에서 하단 안전영역 20pt 위에 토스트를 띄운다
+        .overlay(alignment: .bottom) {
+            if let message = store.toastMessage {
+                ToastMessageView(message: message)
+                    .padding(.bottom, 20)
+                    // 나타날 때는 빠르게, 사라질 때는 천천히 페이드 아웃한다
+                    .transition(.asymmetric(
+                        insertion: .opacity.animation(.easeIn(duration: 0.2)),
+                        removal: .opacity.animation(.easeOut(duration: 0.8))
+                    ))
+            }
+        }
+        .animation(.default, value: store.toastMessage)
+    }
+
+    // 경로에 따라 이동할 하위 화면
+    @ViewBuilder
+    private func destination(_ route: RecipeFeature.Route) -> some View {
+        switch route {
+        case .saved:
+            SavedRecipeView(
+                recipes: store.bookmarkedRecipes,
+                onBack: { store.send(.backTapped) },
+                onBookmarkTap: { store.send(.bookmarkTapped($0)) },
+                onRecipeTap: { store.send(.recipeTapped($0)) }
+            )
+
+        case let .detail(id):
+            if let recipe = store.recipes[id: id] {
+                RecipeDetailView(
+                    recipe: recipe,
+                    onBack: { store.send(.backTapped) },
+                    onBookmarkTap: { store.send(.bookmarkTapped(id)) }
+                )
             }
         }
     }
