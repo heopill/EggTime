@@ -11,8 +11,8 @@ struct RecipeView: View {
 
     // 레시피 그리드 2열 구성
     private let columns = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
+        GridItem(.flexible(), spacing: 20),
+        GridItem(.flexible(), spacing: 20)
     ]
 
     var body: some View {
@@ -34,7 +34,7 @@ struct RecipeView: View {
                     .padding(.horizontal, 20)
 
                     ScrollView {
-                        LazyVGrid(columns: columns, spacing: 15) {
+                        LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(store.filteredRecipes) { recipe in
                                 RecipeOptionView(
                                     imageName: recipe.imageName,

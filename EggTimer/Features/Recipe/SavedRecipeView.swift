@@ -18,8 +18,8 @@ struct SavedRecipeView: View {
 
     // 레시피 그리드 2열 구성 (레시피 목록 화면과 동일)
     private let columns = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
+        GridItem(.flexible(), spacing: 20),
+        GridItem(.flexible(), spacing: 20)
     ]
 
     var body: some View {
@@ -56,7 +56,7 @@ struct SavedRecipeView: View {
     // 저장된 레시피 카드 그리드
     private var recipeGrid: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 15) {
+            LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(recipes) { recipe in
                     RecipeOptionView(
                         imageName: recipe.imageName,
