@@ -32,7 +32,9 @@ struct RecipeDetailView: View {
                     leadingIcon: "ChevronLeft",
                     onLeadingTap: onBack,
                     trailingIcon: recipe.isBookmarked ? "BookmarkSelected" : "BookmarkDefault",
-                    onTrailingTap: onBookmarkTap
+                    onTrailingTap: onBookmarkTap,
+                    // 사진 위에 올라가므로 아이콘 뒤에 반투명 배경을 둔다
+                    iconStyle: .overlay
                 )
             }
         }
