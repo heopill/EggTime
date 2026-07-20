@@ -12,8 +12,8 @@ struct RecipeFeature {
     struct State: Equatable {
         var recipes: IdentifiedArrayOf<Recipe> = IdentifiedArray(uniqueElements: Recipe.all)
         var selectedCategory: RecipeCategory = .all
-        // 레시피 상세로 밀어 넣은 화면 경로 (선택된 레시피 id)
-        var path: [Recipe.ID] = []
+        // 밀어 넣은 화면 경로
+        var path: [Route] = []
         // 표시 중인 토스트 문구 (없으면 nil)
         var toastMessage: String?
 
@@ -25,6 +25,17 @@ struct RecipeFeature {
 
             return recipes.filter { $0.category == selectedCategory }
         }
+
+        // 북마크로 저장한 레시피 목록
+        var bookmarkedRecipes: [Recipe] {
+            return recipes.filter(\.isBookmarked)
+        }
+    }
+
+    // 레시피 탭에서 이동할 수 있는 하위 화면
+    nonisolated enum Route: Hashable, Sendable {
+        case saved             // 저장된 레시피 목록
+        case detail(Recipe.ID) // 레시피 상세
     }
 
     enum Action: BindableAction {
@@ -33,6 +44,7 @@ struct RecipeFeature {
         case categorySelected(RecipeCategory)
         case bookmarkTapped(Recipe.ID)
         case recipeTapped(Recipe.ID)
+        case savedRecipesTapped
         case backTapped
         case toastDismissed
     }
@@ -95,7 +107,12 @@ struct RecipeFeature {
                 return .none
 
             case let .recipeTapped(id):
-                state.path.append(id)
+                state.path.append(.detail(id))
+
+                return .none
+
+            case .savedRecipesTapped:
+                state.path.append(.saved)
 
                 return .none
 
