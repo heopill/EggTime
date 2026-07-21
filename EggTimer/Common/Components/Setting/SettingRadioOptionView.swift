@@ -52,7 +52,7 @@ struct SettingRadioOptionView<Option: Hashable>: View {
         ZStack {
             Circle()
                 .strokeBorder(
-                    isSelected ? Color("BrandPrimary") : Color(hex: "D9D9D9"),
+                    isSelected ? Color("BrandPrimary") : Color("Background"),
                     lineWidth: 2
                 )
 
