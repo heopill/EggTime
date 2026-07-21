@@ -12,9 +12,28 @@ struct SettingVersionView: View {
     // 앱스토어에 등록된 최신 버전
     let latestVersion: String
 
-    // 현재 버전이 최신 버전과 일치하는지 여부 (업데이트 버튼 활성화 판단에 사용)
+    // 현재 버전이 최신 버전과 같은지 여부 (업데이트 버튼 활성화 판단에 사용)
+    // "1.1"과 "1.1.0"처럼 자리 수가 달라도 같은 버전으로 취급한다
     var isUpToDate: Bool {
-        return currentVersion == latestVersion
+        return Self.compareVersion(currentVersion, latestVersion) == .orderedSame
+    }
+
+    // 버전 문자열을 점으로 나눠 각 자리를 숫자로 비교한다 (모자란 자리는 0으로 채운다)
+    static func compareVersion(_ lhs: String, _ rhs: String) -> ComparisonResult {
+        let lhsParts = lhs.split(separator: ".").map { Int($0) ?? 0 }
+        let rhsParts = rhs.split(separator: ".").map { Int($0) ?? 0 }
+        let count = max(lhsParts.count, rhsParts.count)
+
+        for index in 0..<count {
+            let left = index < lhsParts.count ? lhsParts[index] : 0
+            let right = index < rhsParts.count ? rhsParts[index] : 0
+
+            if left != right {
+                return left < right ? .orderedAscending : .orderedDescending
+            }
+        }
+
+        return .orderedSame
     }
 
     var body: some View {
