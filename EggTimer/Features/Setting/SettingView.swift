@@ -5,9 +5,16 @@
 
 import SwiftUI
 import ComposableArchitecture
+import MessageUI
 
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
+    // 문의 메일 작성 시트 표시 여부
+    @State private var isMailPresented = false
+    // 메일을 보낼 수 없을 때 안내 알럿 표시 여부
+    @State private var isMailUnavailableAlertPresented = false
+    // 문의 정보 복사 완료 토스트 표시 여부
+    @State private var isCopiedToastPresented = false
 
     var body: some View {
         NavigationStack(path: $store.path) {
@@ -19,7 +26,7 @@ struct SettingView: View {
                     AppBarView(title: String(localized: "Settings", table: "Setting"))
 
                     VStack(spacing: 16) {
-                        soundSection
+                        personalSection
                         appSection
                         contactSection
                     }
@@ -34,6 +41,64 @@ struct SettingView: View {
                 destination(route)
                     .toolbar(.hidden, for: .tabBar)
             }
+            .task {
+                store.send(.onAppear)
+            }
+        }
+        // 문의하기: 기기/앱 정보가 자동 입력된 메일 작성 창을 띄운다
+        .sheet(isPresented: $isMailPresented) {
+            MailComposeView(
+                recipient: SupportInfo.recipient,
+                subject: SupportInfo.subject,
+                body: SupportInfo.body,
+                onFinish: { isMailPresented = false }
+            )
+            .ignoresSafeArea()
+        }
+        // 메일을 보낼 수 없을 때 안내 알럿
+        .overlay {
+            if isMailUnavailableAlertPresented {
+                CustomAlertView(
+                    title: String(localized: "Can't send mail", table: "Setting"),
+                    message: String(
+                        format: String(localized: "Mail app is not set up. Please contact us at %@.", table: "Setting"),
+                        SupportInfo.recipient
+                    ),
+                    confirmTitle: String(localized: "Copy info", table: "Setting"),
+                    cancelTitle: String(localized: "Confirm", table: "Setting"),
+                    confirmAction: {
+                        UIPasteboard.general.string = SupportInfo.clipboardText
+                        isMailUnavailableAlertPresented = false
+                        isCopiedToastPresented = true
+                    },
+                    cancelAction: { isMailUnavailableAlertPresented = false }
+                )
+                .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: isMailUnavailableAlertPresented)
+        // 정보 복사 완료 토스트 (하단, 잠시 후 자동으로 사라짐)
+        .overlay(alignment: .bottom) {
+            if isCopiedToastPresented {
+                ToastMessageView(message: String(localized: "Info copied", table: "Setting"))
+                    .padding(.bottom, 24)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: isCopiedToastPresented)
+        .task(id: isCopiedToastPresented) {
+            guard isCopiedToastPresented else { return }
+            try? await Task.sleep(for: .seconds(2))
+            isCopiedToastPresented = false
+        }
+    }
+
+    // 문의하기 탭: 메일 사용 가능하면 작성 창을, 아니면 안내 알럿을 띄운다
+    private func handleContactTap() {
+        if MFMailComposeViewController.canSendMail() {
+            isMailPresented = true
+        } else {
+            isMailUnavailableAlertPresented = true
         }
     }
 
@@ -41,28 +106,31 @@ struct SettingView: View {
     @ViewBuilder
     private func destination(_ route: SettingFeature.Route) -> some View {
         switch route {
+        case .notification:
+            NotificationView(store: store)
+
         case .soundMode:
-            SoundModeView()
+            SoundModeView(store: store)
 
         case .timerEndSound:
-            TimerEndSoundView()
+            TimerEndSoundView(store: store)
 
         case .appInfo:
-            AppInfoView()
+            AppInfoView(store: store)
 
         case .privacyPolicy:
-            PrivacyPolicyView()
-
-        case .contact:
-            ContactView()
+            PrivacyPolicyView(store: store)
         }
     }
 
-    // 사운드 설정 섹션
-    private var soundSection: some View {
+    // 개인 설정 섹션
+    private var personalSection: some View {
         section(
-            title: String(localized: "Sound Settings", table: "Setting"),
+            title: String(localized: "Personal Settings", table: "Setting"),
             items: [
+                SettingOptionItem(iconName: "Bell", title: String(localized: "Notifications", table: "Setting")) {
+                    store.send(.notificationTapped)
+                },
                 SettingOptionItem(iconName: "Sound", title: String(localized: "Sound Mode", table: "Setting")) {
                     store.send(.soundModeTapped)
                 },
@@ -94,7 +162,7 @@ struct SettingView: View {
             title: String(localized: "Contact", table: "Setting"),
             items: [
                 SettingOptionItem(iconName: "Question", title: String(localized: "Contact Us", table: "Setting")) {
-                    store.send(.contactTapped)
+                    handleContactTap()
                 }
             ]
         )
