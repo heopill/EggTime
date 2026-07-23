@@ -26,7 +26,7 @@ struct ToastMessageView: View {
             .frame(height: lineHeight)
             .padding(8)
             .frame(width: toastWidth)
-            .background(Color("Secondary"))
+            .background(Color("BrandSecondary"))
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
 }
