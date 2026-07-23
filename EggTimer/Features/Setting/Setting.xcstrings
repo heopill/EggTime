@@ -111,6 +111,86 @@
         }
       }
     },
+    "Alarm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "알람" }
+        }
+      }
+    },
+    "Crowing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "꼬끼오" }
+        }
+      }
+    },
+    "Ding" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "디리링" }
+        }
+      }
+    },
+    "Arcade" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "아케이드" }
+        }
+      }
+    },
+    "Good Result" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "빠바밤빰빠밤" }
+        }
+      }
+    },
+    "Success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "빰빠밤" }
+        }
+      }
+    },
+    "Yay" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "예이~" }
+        }
+      }
+    },
+    "Level Passed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "완료" }
+        }
+      }
+    },
+    "Fanfare" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "팡파레" }
+        }
+      }
+    },
+    "Notification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "띵딩딩" }
+        }
+      }
+    },
     "Privacy Policy" : {
       "extractionState" : "manual",
       "localizations" : {
