@@ -10,8 +10,10 @@ import UserNotifications
 struct NotificationClient: Sendable {
     // 알림 권한을 요청하고 허용 여부를 반환한다
     var requestAuthorization: @Sendable () async -> Bool
-    // 타이머 완료 알림을 지정한 시간(초) 뒤에 예약한다
-    var scheduleCompletion: @Sendable (_ after: TimeInterval) async -> Void
+    // 현재 알림 권한이 허용 상태인지 반환한다
+    var isAuthorized: @Sendable () async -> Bool
+    // 타이머 완료 알림을 지정한 시간(초) 뒤에 예약한다 (playSound가 false면 무음 알림)
+    var scheduleCompletion: @Sendable (_ after: TimeInterval, _ playSound: Bool) async -> Void
     // 예약된 타이머 완료 알림을 취소한다
     var cancel: @Sendable () -> Void
 }
@@ -23,11 +25,18 @@ extension NotificationClient: DependencyKey {
 
             return (try? await center.requestAuthorization(options: [.alert, .sound])) ?? false
         },
-        scheduleCompletion: { after in
+        isAuthorized: {
+            let settings = await UNUserNotificationCenter.current().notificationSettings()
+
+            // 정식 허용과 임시(provisional) 허용을 켜짐으로 본다
+            return settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional
+        },
+        scheduleCompletion: { after, playSound in
             let content = UNMutableNotificationContent()
             content.title = String(localized: "EggTime", table: "Timer")
             content.body = String(localized: "Your egg is perfectly boiled!", table: "Timer")
-            content.sound = .default
+            // 소리 모드에서만 기본 알림음을 재생하고, 그 외에는 무음으로 예약한다
+            content.sound = playSound ? .default : nil
 
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, after), repeats: false)
             let request = UNNotificationRequest(
@@ -45,7 +54,8 @@ extension NotificationClient: DependencyKey {
 
     static let previewValue = NotificationClient(
         requestAuthorization: { true },
-        scheduleCompletion: { _ in },
+        isAuthorized: { true },
+        scheduleCompletion: { _, _ in },
         cancel: {}
     )
     static let testValue = previewValue
