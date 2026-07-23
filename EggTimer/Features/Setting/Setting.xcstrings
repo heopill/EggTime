@@ -67,6 +67,28 @@
         }
       }
     },
+    "You're up to date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최신 버전입니다"
+          }
+        }
+      }
+    },
+    "Update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트하기"
+          }
+        }
+      }
+    },
     "Vibration" : {
       "extractionState" : "manual",
       "localizations" : {
