@@ -5,9 +5,16 @@
 
 import SwiftUI
 import ComposableArchitecture
+import MessageUI
 
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
+    // 문의 메일 작성 시트 표시 여부
+    @State private var isMailPresented = false
+    // 메일을 보낼 수 없을 때 안내 알럿 표시 여부
+    @State private var isMailUnavailableAlertPresented = false
+    // 문의 정보 복사 완료 토스트 표시 여부
+    @State private var isCopiedToastPresented = false
 
     var body: some View {
         NavigationStack(path: $store.path) {
@@ -38,6 +45,61 @@ struct SettingView: View {
                 store.send(.onAppear)
             }
         }
+        // 문의하기: 기기/앱 정보가 자동 입력된 메일 작성 창을 띄운다
+        .sheet(isPresented: $isMailPresented) {
+            MailComposeView(
+                recipient: SupportInfo.recipient,
+                subject: SupportInfo.subject,
+                body: SupportInfo.body,
+                onFinish: { isMailPresented = false }
+            )
+            .ignoresSafeArea()
+        }
+        // 메일을 보낼 수 없을 때 안내 알럿
+        .overlay {
+            if isMailUnavailableAlertPresented {
+                CustomAlertView(
+                    title: String(localized: "Can't send mail", table: "Setting"),
+                    message: String(
+                        format: String(localized: "Mail app is not set up. Please contact us at %@.", table: "Setting"),
+                        SupportInfo.recipient
+                    ),
+                    confirmTitle: String(localized: "Copy info", table: "Setting"),
+                    cancelTitle: String(localized: "Confirm", table: "Setting"),
+                    confirmAction: {
+                        UIPasteboard.general.string = SupportInfo.clipboardText
+                        isMailUnavailableAlertPresented = false
+                        isCopiedToastPresented = true
+                    },
+                    cancelAction: { isMailUnavailableAlertPresented = false }
+                )
+                .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: isMailUnavailableAlertPresented)
+        // 정보 복사 완료 토스트 (하단, 잠시 후 자동으로 사라짐)
+        .overlay(alignment: .bottom) {
+            if isCopiedToastPresented {
+                ToastMessageView(message: String(localized: "Info copied", table: "Setting"))
+                    .padding(.bottom, 24)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: isCopiedToastPresented)
+        .task(id: isCopiedToastPresented) {
+            guard isCopiedToastPresented else { return }
+            try? await Task.sleep(for: .seconds(2))
+            isCopiedToastPresented = false
+        }
+    }
+
+    // 문의하기 탭: 메일 사용 가능하면 작성 창을, 아니면 안내 알럿을 띄운다
+    private func handleContactTap() {
+        if MFMailComposeViewController.canSendMail() {
+            isMailPresented = true
+        } else {
+            isMailUnavailableAlertPresented = true
+        }
     }
 
     // 경로에 따라 이동할 하위 화면
@@ -58,9 +120,6 @@ struct SettingView: View {
 
         case .privacyPolicy:
             PrivacyPolicyView()
-
-        case .contact:
-            ContactView()
         }
     }
 
@@ -103,7 +162,7 @@ struct SettingView: View {
             title: String(localized: "Contact", table: "Setting"),
             items: [
                 SettingOptionItem(iconName: "Question", title: String(localized: "Contact Us", table: "Setting")) {
-                    store.send(.contactTapped)
+                    handleContactTap()
                 }
             ]
         )

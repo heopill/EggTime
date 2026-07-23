@@ -26,7 +26,6 @@ struct SettingFeature {
         case timerEndSound
         case appInfo
         case privacyPolicy
-        case contact
     }
 
     enum Action: BindableAction {
@@ -41,7 +40,6 @@ struct SettingFeature {
         case timerEndSoundSelected(TimerEndSound)
         case appInfoTapped
         case privacyPolicyTapped
-        case contactTapped
         case backTapped
     }
 
@@ -108,11 +106,6 @@ struct SettingFeature {
 
             case .privacyPolicyTapped:
                 state.path.append(.privacyPolicy)
-
-                return .none
-
-            case .contactTapped:
-                state.path.append(.contact)
 
                 return .none
 
