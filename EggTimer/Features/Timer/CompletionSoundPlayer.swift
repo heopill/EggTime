@@ -14,9 +14,14 @@ final class CompletionSoundPlayer {
 
     private init() {}
 
-    /// 번들의 완료음을 재생한다 (무음 모드에서도 들리도록 .playback 카테고리를 사용)
+    /// 현재 선택된 종료음을 재생한다 (완료 시점 사용)
     func play() {
-        guard let url = Bundle.main.url(forResource: "fanfare", withExtension: "wav") else {
+        play(TimerEndSound.current)
+    }
+
+    /// 지정한 종료음을 재생한다 (미리듣기 등). 무음 모드에서도 들리도록 .playback 카테고리를 사용
+    func play(_ sound: TimerEndSound) {
+        guard let url = Bundle.main.url(forResource: sound.fileName, withExtension: "wav") else {
             return
         }
 

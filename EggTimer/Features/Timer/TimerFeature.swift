@@ -251,12 +251,13 @@ struct TimerFeature {
         }
     }
 
-    // 완료 알림을 예약하는 이펙트 (사운드 모드에 따라 알림음 유무를 결정)
+    // 완료 알림을 예약하는 이펙트 (사운드 모드에 따라 알림음 유무를, 종료음 설정에 따라 알림음 종류를 결정)
     private func scheduleNotificationEffect(after seconds: Int) -> Effect<Action> {
         let playSound = soundSettings.load().playsSound
+        let soundName = soundSettings.loadEndSound().fileName
 
         return .run { [notifications] _ in
-            await notifications.scheduleCompletion(TimeInterval(seconds), playSound)
+            await notifications.scheduleCompletion(TimeInterval(seconds), playSound, soundName)
         }
     }
 

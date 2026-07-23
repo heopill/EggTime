@@ -51,7 +51,7 @@ struct SettingView: View {
             SoundModeView(store: store)
 
         case .timerEndSound:
-            TimerEndSoundView()
+            TimerEndSoundView(store: store)
 
         case .appInfo:
             AppInfoView()

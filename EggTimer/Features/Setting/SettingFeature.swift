@@ -15,6 +15,8 @@ struct SettingFeature {
         var soundMode: SoundMode = .vibrationAndSound
         // 현재 시스템 알림 권한 허용 여부 (알림 화면 라디오 표시용)
         var isNotificationAuthorized: Bool = false
+        // 선택된 타이머 종료음 (UserDefaults가 원본, 이 값은 화면 표시용 사본)
+        var timerEndSound: TimerEndSound = .fanfare
     }
 
     // 설정 메뉴에서 이동할 수 있는 하위 화면들
@@ -36,6 +38,7 @@ struct SettingFeature {
         case soundModeTapped
         case soundModeSelected(SoundMode)
         case timerEndSoundTapped
+        case timerEndSoundSelected(TimerEndSound)
         case appInfoTapped
         case privacyPolicyTapped
         case contactTapped
@@ -51,8 +54,9 @@ struct SettingFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                // 저장된 사운드 모드를 불러와 반영한다
+                // 저장된 사운드 모드와 종료음을 불러와 반영한다
                 state.soundMode = soundSettings.load()
+                state.timerEndSound = soundSettings.loadEndSound()
 
                 return .none
 
@@ -89,6 +93,13 @@ struct SettingFeature {
                 state.path.append(.timerEndSound)
 
                 return .none
+
+            case let .timerEndSoundSelected(sound):
+                state.timerEndSound = sound
+
+                return .run { [soundSettings] _ in
+                    soundSettings.saveEndSound(sound)
+                }
 
             case .appInfoTapped:
                 state.path.append(.appInfo)
