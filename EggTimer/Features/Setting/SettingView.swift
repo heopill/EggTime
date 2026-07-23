@@ -19,7 +19,7 @@ struct SettingView: View {
                     AppBarView(title: String(localized: "Settings", table: "Setting"))
 
                     VStack(spacing: 16) {
-                        soundSection
+                        personalSection
                         appSection
                         contactSection
                     }
@@ -34,6 +34,9 @@ struct SettingView: View {
                 destination(route)
                     .toolbar(.hidden, for: .tabBar)
             }
+            .task {
+                store.send(.onAppear)
+            }
         }
     }
 
@@ -41,8 +44,11 @@ struct SettingView: View {
     @ViewBuilder
     private func destination(_ route: SettingFeature.Route) -> some View {
         switch route {
+        case .notification:
+            NotificationView(store: store)
+
         case .soundMode:
-            SoundModeView()
+            SoundModeView(store: store)
 
         case .timerEndSound:
             TimerEndSoundView()
@@ -58,11 +64,14 @@ struct SettingView: View {
         }
     }
 
-    // 사운드 설정 섹션
-    private var soundSection: some View {
+    // 개인 설정 섹션
+    private var personalSection: some View {
         section(
-            title: String(localized: "Sound Settings", table: "Setting"),
+            title: String(localized: "Personal Settings", table: "Setting"),
             items: [
+                SettingOptionItem(iconName: "Bell", title: String(localized: "Notifications", table: "Setting")) {
+                    store.send(.notificationTapped)
+                },
                 SettingOptionItem(iconName: "Sound", title: String(localized: "Sound Mode", table: "Setting")) {
                     store.send(.soundModeTapped)
                 },
