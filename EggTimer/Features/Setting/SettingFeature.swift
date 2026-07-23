@@ -17,6 +17,8 @@ struct SettingFeature {
         var isNotificationAuthorized: Bool = false
         // 선택된 타이머 종료음 (UserDefaults가 원본, 이 값은 화면 표시용 사본)
         var timerEndSound: TimerEndSound = .fanfare
+        // 앱스토어에서 조회한 최신 버전 정보 (미배포/조회 실패 시 nil)
+        var appStoreLookup: AppStoreLookup?
     }
 
     // 설정 메뉴에서 이동할 수 있는 하위 화면들
@@ -39,12 +41,15 @@ struct SettingFeature {
         case timerEndSoundTapped
         case timerEndSoundSelected(TimerEndSound)
         case appInfoTapped
+        case appStoreVersionRequested
+        case appStoreVersionLoaded(AppStoreLookup?)
         case privacyPolicyTapped
         case backTapped
     }
 
     @Dependency(\.soundSettings) var soundSettings
     @Dependency(\.notifications) var notifications
+    @Dependency(\.appStore) var appStore
 
     var body: some Reducer<State, Action> {
         BindingReducer()
@@ -101,6 +106,18 @@ struct SettingFeature {
 
             case .appInfoTapped:
                 state.path.append(.appInfo)
+
+                return .none
+
+            case .appStoreVersionRequested:
+                // 앱스토어의 최신 버전을 조회한다
+                return .run { [appStore] send in
+                    let lookup = await appStore.lookup()
+                    await send(.appStoreVersionLoaded(lookup))
+                }
+
+            case let .appStoreVersionLoaded(lookup):
+                state.appStoreLookup = lookup
 
                 return .none
 

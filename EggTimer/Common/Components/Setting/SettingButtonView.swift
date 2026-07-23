@@ -18,11 +18,12 @@ struct SettingButtonView: View {
         Button(action: action) {
             Text(title)
                 .fontStyle(.title16)
-                .foregroundColor(.white)
+                // 활성: 흰 글씨, 비활성: TextNormal(#555555) 글씨
+                .foregroundColor(isEnabled ? .white : Color("TextNormal"))
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
-                // 선택 가능하면 BrandPrimary, 불가능하면 TextNormal(#555555)
-                .background(isEnabled ? Color("BrandPrimary") : Color("TextNormal"))
+                // 활성: BrandPrimary 배경, 비활성: 앱 배경색과 동일(Background)
+                .background(isEnabled ? Color("BrandPrimary") : Color("Background"))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .buttonStyle(.plain)

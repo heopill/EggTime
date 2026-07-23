@@ -116,10 +116,10 @@ struct SettingView: View {
             TimerEndSoundView(store: store)
 
         case .appInfo:
-            AppInfoView()
+            AppInfoView(store: store)
 
         case .privacyPolicy:
-            PrivacyPolicyView()
+            PrivacyPolicyView(store: store)
         }
     }
 
