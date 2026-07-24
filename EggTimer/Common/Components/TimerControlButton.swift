@@ -14,6 +14,7 @@ struct TimerControlButton: View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Image(iconName)
+                    .renderingMode(.template)
                     .resizable()
                     .frame(width: 24, height: 24)
 
