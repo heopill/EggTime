@@ -29,6 +29,14 @@ struct SoundModeView: View {
                 )
                 .padding(.horizontal, 20)
 
+                SettingInfoView(
+                    messages: [
+                        String(localized: "Sound Mode Info 1", table: "Setting"),
+                        String(localized: "Sound Mode Info 2", table: "Setting")
+                    ]
+                )
+                .padding(.horizontal, 20)
+
                 Spacer()
             }
         }
