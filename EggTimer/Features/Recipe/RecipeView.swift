@@ -74,6 +74,8 @@ struct RecipeView: View {
             }
         }
         .animation(.default, value: store.toastMessage)
+        // 북마크 저장/취소 시 햅틱 (저장 개수가 바뀌는 걸 트리거로 사용 — 목록·상세·저장목록 어디서 눌러도 동작)
+        .sensoryFeedback(.impact(weight: .light), trigger: store.bookmarkedRecipes.count)
     }
 
     // 경로에 따라 이동할 하위 화면
