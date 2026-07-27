@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import UIKit
 import ComposableArchitecture
 
 struct TimerView: View {
@@ -103,6 +104,10 @@ struct TimerView: View {
             if newPhase == .active {
                 store.send(.timerTicked)
             }
+        }
+        .onChange(of: store.isRunning) { _, isRunning in
+            // 타이머가 진행 중일 때만 화면이 자동으로 꺼지지 않도록 한다
+            UIApplication.shared.isIdleTimerDisabled = isRunning
         }
     }
 
