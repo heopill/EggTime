@@ -421,6 +421,39 @@
           }
         }
       }
+    },
+    "Sound Mode Info 1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "우리 앱의 사운드 모드 ‘소리’ 기능은 앱이 켜져 있을 때, 앱이 꺼져 있을 때 모두 ‘소리’ 기능을 들려줄 수 있습니다."
+          }
+        }
+      }
+    },
+    "Sound Mode Info 2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다만 앱 화면이 꺼진 상태에서는 무음 모드를 따르기 때문에 이때 무음이면 소리가 나지 않습니다. 따라서 중요한 타이머는 앱 화면을 켜거나 무음 모드를 해제해 주세요."
+          }
+        }
+      }
+    },
+    "Timer End Sound Info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭하여 종료음을 미리 들어보고, 마음에 드는 종료음을 선택하세요."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
