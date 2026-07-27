@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct TimerControlButton: View {
     let iconName: String
@@ -11,7 +12,11 @@ struct TimerControlButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            // 탭 시 가벼운 햅틱을 준다 (시작/일시정지/재시작/초기화)
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            action()
+        } label: {
             VStack(spacing: 4) {
                 Image(iconName)
                     .renderingMode(.template)
