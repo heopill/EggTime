@@ -66,7 +66,7 @@
 | 프로필 | 이름 | 역할 | 담당 업무 | GitHub |
 | :---: | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/heopill.png" width="80px"> | **허성필** | **PM, iOS** | 프로젝트 매니징, 타이머 로직 및 상태 복원, <br> 레시피/설정 기능, 알림 처리, UI 컴포넌트 개발 | [🔗](https://github.com/heopill) |
-| <img src="https://github.com/user-attachments/assets/17de58cc-bc5a-472c-a668-8b9b69f46907" width="80px"> | **염지윤** | **Designer** | 전체 UI/UX 컨셉 설계, 디자인 시스템 구축, 계란 · 아이콘 에셋 및 스토어 에셋 제작 | - |
+| <img src="https://github.com/user-attachments/assets/17de58cc-bc5a-472c-a668-8b9b69f46907" width="80px"> | **염지윤** | **Designer** | 전체 UI/UX 컨셉 설계, 디자인 시스템 구축, <br> 계란 · 아이콘 에셋 및 스토어 에셋 제작 | - |
 
 <br>
 
