@@ -1,0 +1,138 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "Boiled Egg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삶은 계란"
+          }
+        }
+      }
+    },
+    "Fried Egg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계란 프라이"
+          }
+        }
+      }
+    },
+    "Hard-boiled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완벽한 완숙"
+          }
+        }
+      }
+    },
+    "Hard-boiled with a fully cooked yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 완전히 익은 반숙"
+          }
+        }
+      }
+    },
+    "Medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "적당한 반숙"
+          }
+        }
+      }
+    },
+    "Omelette" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오믈렛"
+          }
+        }
+      }
+    },
+    "Runny" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "흐르는 반숙"
+          }
+        }
+      }
+    },
+    "Scrambled Eggs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크램블 에그"
+          }
+        }
+      }
+    },
+    "Soft" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "촉촉한 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a medium yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 적당히 익은 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a moist yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 촉촉한 반숙"
+          }
+        }
+      }
+    },
+    "Soft-boiled with a runny yolk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노른자가 흐르는 반숙"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
