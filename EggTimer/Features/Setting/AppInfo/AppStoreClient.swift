@@ -32,8 +32,21 @@ extension AppStoreClient: DependencyKey {
     static let liveValue = AppStoreClient(
         lookup: {
             // 번들 ID로 iTunes Lookup API를 조회한다 (앱이 앱스토어에 게시된 후에만 결과가 있음)
-            guard let bundleID = Bundle.main.bundleIdentifier,
-                  let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleID)") else {
+            guard let bundleID = Bundle.main.bundleIdentifier else {
+                return nil
+            }
+
+            // country를 지정하지 않으면 US 스토어 기준으로 조회되어, 미출시 국가에서는 결과가 비어 nil이 된다.
+            // 기기 지역에 맞춰 조회하고, 지역을 못 구하면 US로 폴백한다
+            let country = Locale.current.region?.identifier ?? "US"
+
+            var components = URLComponents(string: "https://itunes.apple.com/lookup")
+            components?.queryItems = [
+                URLQueryItem(name: "bundleId", value: bundleID),
+                URLQueryItem(name: "country", value: country)
+            ]
+
+            guard let url = components?.url else {
                 return nil
             }
 
