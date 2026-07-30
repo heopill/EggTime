@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/release-v26.0.0-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
   </p>
   <p align="center">
-    <a href="https://apps.apple.com/us/app/에그타임-계란-타이머/id6794049013">
+    <a href="https://apps.apple.com/kr/app/에그타임-계란-타이머/id6794049013">
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="40">
     </a>
   </p>
