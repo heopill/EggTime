@@ -18,48 +18,36 @@ struct TimerView: View {
     var body: some View {
         TabView(selection: $store.selectedTab) {
             GeometryReader { proxy in
-                // 피그마 기본 화면(너비 375) 대비 실제 화면 너비 비율
-                let scale = proxy.size.width / 375
+                // 피그마는 아이폰 13 mini(375×812) 기준으로 디자인되어, 전체 콘텐츠를 기기 높이 비율로 확대한다.
+                // 배율은 1.3으로 상한을 둔다 (아이폰은 최대 ~1.18이라 실질적으로 아이패드 등 큰 화면에만 적용됨)
+                let screenHeight = proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom
+                let heightRatio = min(screenHeight / 812, 1.3)
 
-                // 상단 SafeArea 인셋과 전체 화면 높이
-                let topInset = proxy.safeAreaInsets.top
-                let screenHeight = proxy.size.height + topInset + proxy.safeAreaInsets.bottom
-
-                // SafeArea 아래부터 버튼 top까지 거리(피그마 544)를 SafeArea 아래 전체 높이(피그마 768) 대비 비율로 환산해 배치한다
-                let buttonTop = topInset + (544.0 / 768.0) * (screenHeight - topInset)
-
-                ZStack(alignment: .topLeading) {
+                ZStack {
                     Color(.background)
                         .ignoresSafeArea()
 
-                    Image("WaterNeg20")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 766 * scale, height: 768 * scale)
-                        // 중심을 유지한 채 원래 크기에서 5% 축소
-                        .scaleEffect(0.95)
-                        .phaseAnimator(waterPhases) { view, angle in
-                            view.rotationEffect(.degrees(angle))
-                        } animation: { _ in
-                            .easeInOut(duration: waterDuration)
-                        }
-                        .offset(x: -195 * scale, y: -180 * scale)
+                    // 배경 물결 장식 (상단 중앙 고정, 좌우로 흔들리는 애니메이션)
+                    waterBackground(scale: heightRatio)
 
-                    // 타이머 섹션 (타이틀 + 남은 시간) - 피그마 콘텐츠 top(84) 기준 배치
-                    timerSection
-                        .frame(width: proxy.size.width)
-                        .padding(.top, 84 * scale)
+                    // 타이머 콘텐츠 - 피그마 기준(너비 375, mini 사이즈)으로 배치한 뒤 전체를 높이 비율로 확대하고,
+                    // SafeArea 중앙에 배치한다. (egg·버튼·글자·간격·여백이 모두 같은 비율로 커진다)
+                    VStack(spacing: 0) {
+                        timerSection
 
-                    EggInfoView(selection: $store.selectedEgg, isSwipeDisabled: store.cookingState != .idle)
-                        .frame(width: proxy.size.width)
-                        .padding(.top, 205 * scale)
+                        EggInfoView(selection: $store.selectedEgg, isSwipeDisabled: store.cookingState != .idle)
+                            .padding(.top, 16)
 
-                    // 컨트롤 버튼 (시작 / 일시정지 · 재시작) - SafeArea 기준 비율 위치에 배치
-                    controlButtons
-                        .frame(width: proxy.size.width)
-                        .padding(.top, buttonTop)
+                        // 피그마 기준 dots↔버튼 간격 83 (scaleEffect로 함께 확대된다)
+                        Spacer()
+                            .frame(height: 83)
+
+                        controlButtons
+                    }
+                    .frame(width: 375)
+                    .scaleEffect(heightRatio, anchor: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .ignoresSafeArea()
             }
             .tabItem {
                 Label(String(localized: "Timer", table: "Timer"), image: "Timer")
@@ -109,6 +97,29 @@ struct TimerView: View {
             // 타이머가 진행 중일 때만 화면이 자동으로 꺼지지 않도록 한다
             UIApplication.shared.isIdleTimerDisabled = isRunning
         }
+    }
+
+    // 배경 물결 장식 (상단 중앙에 고정하고 좌우로 흔들리는 애니메이션을 준다)
+    // 화면보다 큰 이미지를 Color.clear 오버레이로 감싸, 넘치는 크기가 부모 레이아웃을 밀지 않도록 한다
+    private func waterBackground(scale: CGFloat) -> some View {
+        Color.clear
+            .overlay(alignment: .top) {
+                Image("WaterNeg20")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 766 * scale, height: 768 * scale)
+                    // 중심을 유지한 채 원래 크기에서 5% 축소
+                    .scaleEffect(0.95)
+                    .phaseAnimator(waterPhases) { view, angle in
+                        view.rotationEffect(.degrees(angle))
+                    } animation: { _ in
+                        .easeInOut(duration: waterDuration)
+                    }
+                    // 화면 상단 중앙을 기준으로 피그마 값(-160)만큼 위로 올린다
+                    .offset(y: -160 * scale)
+            }
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
     }
 
     // 상단 타이틀 + 남은 시간 표시
