@@ -20,8 +20,9 @@ struct TimerView: View {
             GeometryReader { proxy in
                 // 피그마는 아이폰 13 mini(375×812) 기준으로 디자인되어, 전체 콘텐츠를 기기 높이 비율로 확대한다.
                 // 배율은 1.3으로 상한을 둔다 (아이폰은 최대 ~1.18이라 실질적으로 아이패드 등 큰 화면에만 적용됨)
+                // 하한은 SE(375×667) 기준인 667/812(≈0.82)로 둔다. 그보다 작은 화면에서도 콘텐츠가 더 축소되지 않게 한다
                 let screenHeight = proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom
-                let heightRatio = min(screenHeight / 812, 1.3)
+                let heightRatio = min(max(screenHeight / 812, 667 / 812), 1.3)
 
                 ZStack {
                     Color(.background)
