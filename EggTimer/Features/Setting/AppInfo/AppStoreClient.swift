@@ -50,7 +50,13 @@ extension AppStoreClient: DependencyKey {
                 return nil
             }
 
-            guard let (data, _) = try? await URLSession.shared.data(from: url),
+            // Lookup 응답에는 max-age(약 24시간) 캐시 헤더가 붙어 있어, 로컬 캐시를 쓰면
+            // 새 버전이 배포된 뒤에도 기기에 저장된 이전 버전을 계속 보여준다.
+            // 항상 최신 버전을 조회하도록 로컬 캐시를 무시한다
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+
+            guard let (data, _) = try? await URLSession.shared.data(for: request),
                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let results = json["results"] as? [[String: Any]],
                   let first = results.first,
