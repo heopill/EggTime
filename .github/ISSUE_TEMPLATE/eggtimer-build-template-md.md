@@ -2,7 +2,7 @@
 name: EggTimer-build-template.md
 about: EggTimer-build-template
 title: ''
-labels: build
+labels: build, refactor
 assignees: ''
 
 ---
