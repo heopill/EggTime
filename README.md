@@ -7,7 +7,7 @@
   에그타임 (Egg Time)
   <p align="center">
   <img src="https://img.shields.io/badge/프로젝트 기간-2026.07.02 ~ -fab2ac?style=flat&logo=&logoColor=white" alt="프로젝트 기간" />
-  <img src="https://img.shields.io/badge/release-v26.0.2-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
+  <img src="https://img.shields.io/badge/release-v26.0.3-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
   </p>
   <p align="center">
     <a href="https://apps.apple.com/kr/app/에그타임-계란-타이머/id6794049013">
@@ -128,6 +128,7 @@
 | **v26.0.0** | 2026.07.29 | 첫 공식 배포 (Initial Release) |
 | **v26.0.1** | 2026.07.31 | 타이머 화면 레이아웃 리펙터링 |
 | **v26.0.2** | 2026.08.05 | 세로 모드 고정 및 오디오 세션 복구 |
+| **v26.0.3** | 2026.08.06 | 앱 스토어 버전 조회 로직 수정 |
 
 <br>
 
