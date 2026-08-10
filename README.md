@@ -60,9 +60,6 @@
 <br>
 
 ## 👥 팀 소개
-
-우리는 계란 삶기라는 작은 일상을 더 쉽고 정확하게 만들고자 한 팀입니다.
-
 | 프로필 | 이름 | 역할 | 담당 업무 | GitHub |
 | :---: | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/heopill.png" width="80px"> | **허성필** | **PM, iOS** | 프로젝트 매니징, 타이머 로직 및 상태 복원, <br> 레시피/설정 기능, 알림 처리, UI 컴포넌트 개발 | [🔗](https://github.com/heopill) |
@@ -80,6 +77,7 @@
 | **Notification** | `UserNotifications (Local Notification)`, `AudioToolbox` |
 | **Storage** | `UserDefaults` |
 | **System** | `WebKit(WebView)`, `MessageUI(Mail)`, `iTunes Lookup API(버전 확인)` |
+| **Testing** | `Swift Testing`, `TCA TestStore`, `TestClock` |
 | **Localization** | `String Catalog (.xcstrings)` — 한국어 / 영어 |
 | **Deployment** | `iOS 17.0+`, `Swift 5.0` |
 
@@ -136,34 +134,41 @@
 
 ```
 EggTimer/
-├── Common/                    # 공통 모듈
-│   ├── Components/            # 공통 UI 컴포넌트
-│   │   ├── Recipe/            # 레시피 관련 컴포넌트
-│   │   └── Setting/           # 설정 관련 컴포넌트
-│   ├── Color+Hex             # 컬러 유틸리티
-│   ├── FontStyle             # 폰트 스타일 정의
-│   └── UINavigationController+SwipeBack  # 스와이프 백 제스처
+├── EggTimer/                       
+│   ├── EggTimerApp.swift           # 앱 진입점
+│   │
+│   ├── Common/                     # 공통 모듈
+│   │   ├── Components/             # 공통 UI 컴포넌트
+│   │   │   ├── Recipe/             # 레시피 관련 컴포넌트
+│   │   │   └── Setting/            # 설정 관련 컴포넌트
+│   │   ├── Color+Hex.swift         # 컬러 유틸리티
+│   │   ├── FontStyle.swift         # 폰트 스타일 정의
+│   │   └── UINavigationController+SwipeBack.swift  # 스와이프 백 제스처
+│   │
+│   ├── Features/                   # 기능별 화면 모듈 (View · Feature · Client)
+│   │   ├── Splash/                 # 스플래시 화면
+│   │   ├── Timer/                  # 계란 타이머 (핵심 기능)
+│   │   │                           #  └ TimerFeature · 알림/상태복원/완료음 Client
+│   │   ├── Recipe/                 # 레시피 목록 · 상세 · 북마크
+│   │   └── Setting/                # 설정
+│   │       ├── SoundMode/          # 사운드 모드
+│   │       ├── TimerEndSound/      # 종료음 선택
+│   │       ├── Notification/       # 알림 권한
+│   │       ├── AppInfo/            # 앱 정보 · 버전 확인
+│   │       ├── PrivacyPolicy/      # 개인정보 처리방침
+│   │       └── Contact/            # 문의하기(메일)
+│   │
+│   ├── Resources/                  # 리소스
+│   │   ├── html/                   # 개인정보 처리방침 등 웹뷰 리소스
+│   │   ├── sound/                  # 완료 알림음
+│   │   └── Recipes.json            # 레시피 데이터
+│   │
+│   ├── Assets.xcassets/            # 이미지 및 컬러 리소스
+│   ├── Fonts/                      # 폰트
+│   └── InfoPlist.xcstrings         # 다국어 문자열 리소스
 │
-├── Features/                  # 기능별 화면 모듈
-│   ├── Splash/                # 스플래시 화면
-│   ├── Timer/                 # 계란 타이머 (핵심 기능)
-│   ├── Recipe/                # 레시피 목록 · 상세 · 북마크
-│   └── Setting/               # 설정
-│       ├── SoundMode/         # 사운드 모드
-│       ├── TimerEndSound/     # 종료음 선택
-│       ├── Notification/      # 알림 권한
-│       ├── AppInfo/           # 앱 정보 · 버전 확인
-│       ├── PrivacyPolicy/     # 개인정보 처리방침
-│       └── Contact/           # 문의하기(메일)
-│
-├── Resources/                 # 리소스
-│   ├── html/                  # 개인정보 처리방침 등 웹뷰 리소스
-│   ├── sound/                 # 완료 알림음
-│   └── Recipes.json           # 레시피 데이터
-│
-├── Assets.xcassets/           # 이미지 및 컬러 리소스
-├── Fonts/                     # 폰트
-└── InfoPlist.xcstrings/       # 다국어 문자열 리소스
+└── EggTimerTests/                  # 유닛 테스트 타깃
+    └── EggTimerTests.swift         # TimerFeature 테스트 (TestStore 기반)
 ```
 
 ## License
