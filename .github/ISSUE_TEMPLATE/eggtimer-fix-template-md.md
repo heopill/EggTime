@@ -2,7 +2,7 @@
 name: EggTimer-fix-template.md
 about: EggTimer-fix-template
 title: ''
-labels: fix
+labels: fix, test
 assignees: ''
 
 ---

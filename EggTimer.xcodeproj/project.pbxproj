@@ -10,8 +10,19 @@
 		BB0FF6F52FFD6A5600110682 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BB87D6BE3023949B008A9E44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB0FF6CE2FFAB2EB00110682 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB0FF6D52FFAB2EB00110682;
+			remoteInfo = EggTimer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BB0FF6D62FFAB2EB00110682 /* EggTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EggTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EggTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -33,6 +44,11 @@
 			path = EggTimer;
 			sourceTree = "<group>";
 		};
+		BB87D6BB3023949B008A9E44 /* EggTimerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EggTimerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB87D6B73023949B008A9E44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -51,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				BB0FF6D82FFAB2EB00110682 /* EggTimer */,
+				BB87D6BB3023949B008A9E44 /* EggTimerTests */,
 				BB0FF6D72FFAB2EB00110682 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				BB0FF6D62FFAB2EB00110682 /* EggTimer.app */,
+				BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +114,29 @@
 			productReference = BB0FF6D62FFAB2EB00110682 /* EggTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BB87D6B93023949B008A9E44 /* EggTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB87D6C23023949B008A9E44 /* Build configuration list for PBXNativeTarget "EggTimerTests" */;
+			buildPhases = (
+				BB87D6B63023949B008A9E44 /* Sources */,
+				BB87D6B73023949B008A9E44 /* Frameworks */,
+				BB87D6B83023949B008A9E44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB87D6BF3023949B008A9E44 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB87D6BB3023949B008A9E44 /* EggTimerTests */,
+			);
+			name = EggTimerTests;
+			packageProductDependencies = (
+			);
+			productName = EggTimerTests;
+			productReference = BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +149,10 @@
 				TargetAttributes = {
 					BB0FF6D52FFAB2EB00110682 = {
 						CreatedOnToolsVersion = 26.4;
+					};
+					BB87D6B93023949B008A9E44 = {
+						CreatedOnToolsVersion = 26.4;
+						TestTargetID = BB0FF6D52FFAB2EB00110682;
 					};
 				};
 			};
@@ -123,12 +175,20 @@
 			projectRoot = "";
 			targets = (
 				BB0FF6D52FFAB2EB00110682 /* EggTimer */,
+				BB87D6B93023949B008A9E44 /* EggTimerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BB0FF6D42FFAB2EB00110682 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB87D6B83023949B008A9E44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -145,7 +205,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB87D6B63023949B008A9E44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB87D6BF3023949B008A9E44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB0FF6D52FFAB2EB00110682 /* EggTimer */;
+			targetProxy = BB87D6BE3023949B008A9E44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BB0FF6DF2FFAB2EC00110682 /* Debug */ = {
@@ -290,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 26.0.2;
+				MARKETING_VERSION = 26.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -328,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 26.0.2;
+				MARKETING_VERSION = 26.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -342,6 +417,50 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		BB87D6C03023949B008A9E44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U73C5KBSMA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EggTimer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EggTimer";
+			};
+			name = Debug;
+		};
+		BB87D6C13023949B008A9E44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U73C5KBSMA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EggTimer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EggTimer";
 			};
 			name = Release;
 		};
@@ -362,6 +481,15 @@
 			buildConfigurations = (
 				BB0FF6E22FFAB2EC00110682 /* Debug */,
 				BB0FF6E32FFAB2EC00110682 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB87D6C23023949B008A9E44 /* Build configuration list for PBXNativeTarget "EggTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB87D6C03023949B008A9E44 /* Debug */,
+				BB87D6C13023949B008A9E44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
