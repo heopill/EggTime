@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BB0FF6F52FFD6A5600110682 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */; };
+		BBA1FEF8303D87FB005117CE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA1FEF7303D87FB005117CE /* WidgetKit.framework */; };
+		BBA1FEFA303D87FB005117CE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA1FEF9303D87FB005117CE /* SwiftUI.framework */; };
+		BBA1FF09303D87FD005117CE /* EggTimerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BBA1FEF5303D87FB005117CE /* EggTimerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,11 +21,35 @@
 			remoteGlobalIDString = BB0FF6D52FFAB2EB00110682;
 			remoteInfo = EggTimer;
 		};
+		BBA1FF07303D87FD005117CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB0FF6CE2FFAB2EB00110682 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBA1FEF4303D87FB005117CE;
+			remoteInfo = EggTimerWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BBA1FF0A303D87FD005117CE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BBA1FF09303D87FD005117CE /* EggTimerWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BB0FF6D62FFAB2EB00110682 /* EggTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EggTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EggTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA1FEF5303D87FB005117CE /* EggTimerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EggTimerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA1FEF7303D87FB005117CE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BBA1FEF9303D87FB005117CE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -32,6 +59,13 @@
 				Info.plist,
 			);
 			target = BB0FF6D52FFAB2EB00110682 /* EggTimer */;
+		};
+		BBA1FF0E303D87FD005117CE /* Exceptions for "EggTimerWidget" folder in "EggTimerWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -47,6 +81,14 @@
 		BB87D6BB3023949B008A9E44 /* EggTimerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = EggTimerTests;
+			sourceTree = "<group>";
+		};
+		BBA1FEFB303D87FB005117CE /* EggTimerWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BBA1FF0E303D87FD005117CE /* Exceptions for "EggTimerWidget" folder in "EggTimerWidgetExtension" target */,
+			);
+			path = EggTimerWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -67,6 +109,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBA1FEF2303D87FB005117CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBA1FEFA303D87FB005117CE /* SwiftUI.framework in Frameworks */,
+				BBA1FEF8303D87FB005117CE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -75,6 +126,8 @@
 			children = (
 				BB0FF6D82FFAB2EB00110682 /* EggTimer */,
 				BB87D6BB3023949B008A9E44 /* EggTimerTests */,
+				BBA1FEFB303D87FB005117CE /* EggTimerWidget */,
+				BBA1FEF6303D87FB005117CE /* Frameworks */,
 				BB0FF6D72FFAB2EB00110682 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,8 +137,18 @@
 			children = (
 				BB0FF6D62FFAB2EB00110682 /* EggTimer.app */,
 				BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */,
+				BBA1FEF5303D87FB005117CE /* EggTimerWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BBA1FEF6303D87FB005117CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBA1FEF7303D87FB005117CE /* WidgetKit.framework */,
+				BBA1FEF9303D87FB005117CE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,10 +161,12 @@
 				BB0FF6D22FFAB2EB00110682 /* Sources */,
 				BB0FF6D32FFAB2EB00110682 /* Frameworks */,
 				BB0FF6D42FFAB2EB00110682 /* Resources */,
+				BBA1FF0A303D87FD005117CE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BBA1FF08303D87FD005117CE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				BB0FF6D82FFAB2EB00110682 /* EggTimer */,
@@ -137,6 +202,28 @@
 			productReference = BB87D6BA3023949B008A9E44 /* EggTimerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBA1FF0D303D87FD005117CE /* Build configuration list for PBXNativeTarget "EggTimerWidgetExtension" */;
+			buildPhases = (
+				BBA1FEF1303D87FB005117CE /* Sources */,
+				BBA1FEF2303D87FB005117CE /* Frameworks */,
+				BBA1FEF3303D87FB005117CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BBA1FEFB303D87FB005117CE /* EggTimerWidget */,
+			);
+			name = EggTimerWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = EggTimerWidgetExtension;
+			productReference = BBA1FEF5303D87FB005117CE /* EggTimerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -153,6 +240,9 @@
 					BB87D6B93023949B008A9E44 = {
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = BB0FF6D52FFAB2EB00110682;
+					};
+					BBA1FEF4303D87FB005117CE = {
+						CreatedOnToolsVersion = 26.4;
 					};
 				};
 			};
@@ -176,6 +266,7 @@
 			targets = (
 				BB0FF6D52FFAB2EB00110682 /* EggTimer */,
 				BB87D6B93023949B008A9E44 /* EggTimerTests */,
+				BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -189,6 +280,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BB87D6B83023949B008A9E44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBA1FEF3303D87FB005117CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -212,6 +310,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBA1FEF1303D87FB005117CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -219,6 +324,11 @@
 			isa = PBXTargetDependency;
 			target = BB0FF6D52FFAB2EB00110682 /* EggTimer */;
 			targetProxy = BB87D6BE3023949B008A9E44 /* PBXContainerItemProxy */;
+		};
+		BBA1FF08303D87FD005117CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */;
+			targetProxy = BBA1FF07303D87FD005117CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -464,6 +574,68 @@
 			};
 			name = Release;
 		};
+		BBA1FF0B303D87FD005117CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U73C5KBSMA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EggTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EggTimerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimer.EggTimerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BBA1FF0C303D87FD005117CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U73C5KBSMA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EggTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EggTimerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.seongpil.EggTimer.EggTimerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -490,6 +662,15 @@
 			buildConfigurations = (
 				BB87D6C03023949B008A9E44 /* Debug */,
 				BB87D6C13023949B008A9E44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBA1FF0D303D87FD005117CE /* Build configuration list for PBXNativeTarget "EggTimerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBA1FF0B303D87FD005117CE /* Debug */,
+				BBA1FF0C303D87FD005117CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
