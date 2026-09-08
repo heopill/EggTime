@@ -1,0 +1,28 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "계란이 맛있게\n익고 있어요!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your egg is\ncooking!"
+          }
+        }
+      }
+    },
+    "맛있는 계란이\n준비되었어요!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your tasty egg\nis ready!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
