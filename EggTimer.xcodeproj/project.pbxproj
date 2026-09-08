@@ -67,6 +67,17 @@
 			);
 			target = BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */;
 		};
+		BBA1FFB5304F18C9005117CE /* Exceptions for "EggTimer" folder in "EggTimerWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Features/Timer/EggTimerWidgetAttributes.swift,
+				"Fonts/OkDanDan-Bold.otf",
+				"Fonts/Pretendard-Regular.otf",
+				"Fonts/Pretendard-SemiBold.otf",
+			);
+			target = BBA1FEF4303D87FB005117CE /* EggTimerWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -74,6 +85,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				BB0FF9812FFE697200110682 /* Exceptions for "EggTimer" folder in "EggTimer" target */,
+				BBA1FFB5304F18C9005117CE /* Exceptions for "EggTimer" folder in "EggTimerWidgetExtension" target */,
 			);
 			path = EggTimer;
 			sourceTree = "<group>";
@@ -586,7 +598,7 @@
 				INFOPLIST_FILE = EggTimerWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EggTimerWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -617,7 +629,7 @@
 				INFOPLIST_FILE = EggTimerWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EggTimerWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
