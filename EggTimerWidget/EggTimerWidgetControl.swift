@@ -9,6 +9,7 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
+@available(iOS 18.0, *)
 struct EggTimerWidgetControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(
@@ -28,6 +29,7 @@ struct EggTimerWidgetControl: ControlWidget {
     }
 }
 
+@available(iOS 18.0, *)
 extension EggTimerWidgetControl {
     struct Provider: ControlValueProvider {
         var previewValue: Bool {
