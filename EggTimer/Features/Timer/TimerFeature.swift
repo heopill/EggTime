@@ -80,6 +80,7 @@ struct TimerFeature {
     @Dependency(\.notifications) var notifications
     @Dependency(\.timerPersistence) var persistence
     @Dependency(\.soundSettings) var soundSettings
+    @Dependency(\.liveActivity) var liveActivity
 
     nonisolated private enum CancelID {
         case timer
@@ -124,11 +125,13 @@ struct TimerFeature {
                         state.deadline = nil
                         state.cookingState = .completed
 
-                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() })
+                        // 남아 있을 수 있는 Live Activity를 정리한다
+                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() }, endActivityEffect())
                     }
                     state.deadline = deadline
 
-                    return .merge(authEffect, startTimer())
+                    // 진행 중이던 타이머의 Live Activity를 다시 띄운다
+                    return .merge(authEffect, startTimer(), startActivityEffect(startDate: date.now, deadline: deadline))
                 } else {
                     // 일시정지 상태이던 타이머
                     // 일시정지 후 1시간이 지났으면 복원하지 않고 초기화한다
@@ -158,9 +161,15 @@ struct TimerFeature {
             case .startTapped:
                 state.cookingState = .running
                 // 현재 남은 시간을 기준으로 목표 종료 시각을 정한다
-                state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                let deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                state.deadline = deadline
 
-                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
+                return .merge(
+                    startTimer(),
+                    saveEffect(state),
+                    scheduleNotificationEffect(after: state.remainingSeconds),
+                    startActivityEffect(startDate: date.now, deadline: deadline)
+                )
 
             case .pauseTapped:
                 // 카운트다운을 멈추고 일시정지 상태로 전환한다 (남은 시간을 정확히 계산해 유지)
@@ -170,22 +179,35 @@ struct TimerFeature {
                 state.cookingState = .paused
                 state.deadline = nil
 
-                return .merge(.cancel(id: CancelID.timer), saveEffect(state), cancelNotificationEffect())
+                // 일시정지 디자인이 없으므로 Live Activity는 종료한다 (재개 시 다시 시작)
+                return .merge(.cancel(id: CancelID.timer), saveEffect(state), cancelNotificationEffect(), endActivityEffect())
 
             case .resumeTapped:
                 // 일시정지된 지점의 남은 시간으로 목표 종료 시각을 다시 계산한다
                 state.cookingState = .running
-                state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                let deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                state.deadline = deadline
 
-                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
+                return .merge(
+                    startTimer(),
+                    saveEffect(state),
+                    scheduleNotificationEffect(after: state.remainingSeconds),
+                    startActivityEffect(startDate: date.now, deadline: deadline)
+                )
 
             case .restartTapped:
                 // 완료된 타이머를 선택한 달걀 기준 시간으로 처음부터 다시 시작한다
                 state.remainingSeconds = state.selectedEgg.duration
                 state.cookingState = .running
-                state.deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                let deadline = date.now.addingTimeInterval(TimeInterval(state.remainingSeconds))
+                state.deadline = deadline
 
-                return .merge(startTimer(), saveEffect(state), scheduleNotificationEffect(after: state.remainingSeconds))
+                return .merge(
+                    startTimer(),
+                    saveEffect(state),
+                    scheduleNotificationEffect(after: state.remainingSeconds),
+                    startActivityEffect(startDate: date.now, deadline: deadline)
+                )
 
             case .resetTapped:
                 // 초기화 확인 알럿을 띄운다
@@ -200,7 +222,7 @@ struct TimerFeature {
                 state.deadline = nil
                 state.isResetAlertPresented = false
 
-                return .merge(.cancel(id: CancelID.timer), clearEffect(), cancelNotificationEffect())
+                return .merge(.cancel(id: CancelID.timer), clearEffect(), cancelNotificationEffect(), endActivityEffect())
 
             case .resetCancelled:
                 // 알럿만 닫고 현재 상태를 유지한다
@@ -219,7 +241,7 @@ struct TimerFeature {
                     state.deadline = nil
                     state.cookingState = .completed
 
-                    return .merge(.cancel(id: CancelID.timer), clearEffect())
+                    return .merge(.cancel(id: CancelID.timer), clearEffect(), completeActivityEffect())
                 }
 
                 return .none
@@ -265,6 +287,27 @@ struct TimerFeature {
     private func cancelNotificationEffect() -> Effect<Action> {
         return .run { [notifications] _ in
             notifications.cancel()
+        }
+    }
+
+    // 진행 중 Live Activity를 시작하는 이펙트
+    private func startActivityEffect(startDate: Date, deadline: Date) -> Effect<Action> {
+        return .run { [liveActivity] _ in
+            await liveActivity.start(startDate, deadline)
+        }
+    }
+
+    // Live Activity를 완료 상태로 전환하는 이펙트
+    private func completeActivityEffect() -> Effect<Action> {
+        return .run { [liveActivity] _ in
+            await liveActivity.complete()
+        }
+    }
+
+    // Live Activity를 종료하는 이펙트
+    private func endActivityEffect() -> Effect<Action> {
+        return .run { [liveActivity] _ in
+            await liveActivity.end()
         }
     }
 
