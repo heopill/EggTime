@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "ko",
   "strings" : {
+    "00:00" : {
+
+    },
     "계란이 맛있게\n익고 있어요!" : {
       "extractionState" : "manual",
       "localizations" : {
