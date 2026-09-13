@@ -7,7 +7,7 @@
   에그타임 (Egg Time)
   <p align="center">
   <img src="https://img.shields.io/badge/프로젝트 기간-2026.07.02 ~ -fab2ac?style=flat&logo=&logoColor=white" alt="프로젝트 기간" />
-  <img src="https://img.shields.io/badge/release-v26.0.3-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
+  <img src="https://img.shields.io/badge/release-v26.1.0-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
   </p>
   <p align="center">
     <a href="https://apps.apple.com/kr/app/에그타임-계란-타이머/id6794049013">
@@ -44,6 +44,11 @@
 * **로컬 푸시 알림** : 조리가 끝나면 즉시 알림으로 알려드려, 다른 일을 하다가도 완벽한 타이밍을 놓치지 않습니다.
 * **포그라운드 대응** : 앱이 켜져 있을 때도 사운드 모드에 맞춰 배너 · 소리 · 진동을 직접 처리해 일관된 완료 경험을 제공합니다.
 
+### 🏝️ 다이나믹 아일랜드 · 잠금화면 Live Activity
+* **앱을 벗어나도 이어지는 타이머** : 타이머를 시작하면 다이나믹 아일랜드와 잠금화면에 남은 시간이 실시간으로 표시되어, 앱을 닫고 다른 작업을 해도 조리 상황을 계속 확인할 수 있습니다.
+* **상황별 최적 표시** : 다이나믹 아일랜드의 컴팩트 · 확장 · 미니멀 상태에 맞춰 안내 문구, 카운트다운, 상태 아이콘을 각각 알맞게 배치합니다.
+* **완료 후에도 유지되는 배너** : 조리가 끝나면 곧바로 사라지지 않고 **완료 디자인으로 전환**되어 일정 시간(30분) 동안 남아 있어, 완료 시점을 놓치지 않습니다.
+
 ### 🍳 계란 레시피
 * **카테고리별 탐색** : 삶은 계란 · 프라이 · 스크램블 · 오믈렛 등 분류별로 원하는 레시피만 골라볼 수 있습니다.
 * **상세 레시피** : 조리 시간, 난이도, 재료, 조리 순서까지 한눈에 확인할 수 있습니다.
@@ -72,7 +77,8 @@
 | 분류 | 기술 명세 |
 | :--- | :--- |
 | **Architecture** | `TCA (The Composable Architecture)` |
-| **UI Framework** | `SwiftUI` |
+| **UI Framework** | `SwiftUI`, `WidgetKit` |
+| **Live Activity** | `ActivityKit (Dynamic Island / Lock Screen Live Activity)` |
 | **Async / State** | `Swift Concurrency (async/await)`, `TCA Dependencies`, `ContinuousClock` |
 | **Notification** | `UserNotifications (Local Notification)`, `AudioToolbox` |
 | **Storage** | `UserDefaults` |
@@ -127,6 +133,7 @@
 | **v26.0.1** | 2026.07.31 | 타이머 화면 레이아웃 리펙터링 |
 | **v26.0.2** | 2026.08.05 | 세로 모드 고정 및 오디오 세션 복구 |
 | **v26.0.3** | 2026.08.06 | 앱 스토어 버전 조회 로직 수정 |
+| **v26.1.0** | 2026.09.12 | 다이나믹 아일랜드 기능 추가 |
 
 <br>
 
@@ -134,41 +141,98 @@
 
 ```
 EggTimer/
-├── EggTimer/                       
-│   ├── EggTimerApp.swift           # 앱 진입점
+├── EggTimer/                              # 앱 메인 타깃
+│   ├── EggTimerApp.swift                  # 앱 진입점
+│   ├── Info.plist                         # 앱 Info.plist (Live Activity 지원 키 포함)
+│   ├── InfoPlist.xcstrings                # 다국어 문자열 리소스
 │   │
-│   ├── Common/                     # 공통 모듈
-│   │   ├── Components/             # 공통 UI 컴포넌트
-│   │   │   ├── Recipe/             # 레시피 관련 컴포넌트
-│   │   │   └── Setting/            # 설정 관련 컴포넌트
-│   │   ├── Color+Hex.swift         # 컬러 유틸리티
-│   │   ├── FontStyle.swift         # 폰트 스타일 정의
+│   ├── Common/                            # 공통 모듈
+│   │   ├── Components/                     # 공통 UI 컴포넌트
+│   │   │   ├── AppBarView.swift
+│   │   │   ├── CustomAlertView.swift
+│   │   │   ├── EggInfoView.swift
+│   │   │   ├── IconButtonView.swift
+│   │   │   ├── SettingOptionView.swift
+│   │   │   ├── TimerControlButton.swift
+│   │   │   ├── ToastMessageView.swift
+│   │   │   ├── WebView.swift
+│   │   │   ├── Common.xcstrings
+│   │   │   ├── Recipe/                     # 레시피 관련 컴포넌트
+│   │   │   │   ├── RecipeCategoryView.swift
+│   │   │   │   ├── RecipeInfoView.swift
+│   │   │   │   ├── RecipeOptionView.swift
+│   │   │   │   └── RecipeSectionView.swift
+│   │   │   └── Setting/                    # 설정 관련 컴포넌트
+│   │   │       ├── SettingButtonView.swift
+│   │   │       ├── SettingInfoView.swift
+│   │   │       ├── SettingRadioOptionView.swift
+│   │   │       └── SettingVersionView.swift
+│   │   ├── Color+Hex.swift                 # 컬러 유틸리티
+│   │   ├── FontStyle.swift                 # 폰트 스타일 정의
 │   │   └── UINavigationController+SwipeBack.swift  # 스와이프 백 제스처
 │   │
-│   ├── Features/                   # 기능별 화면 모듈 (View · Feature · Client)
-│   │   ├── Splash/                 # 스플래시 화면
-│   │   ├── Timer/                  # 계란 타이머 (핵심 기능)
-│   │   │                           #  └ TimerFeature · 알림/상태복원/완료음 Client
-│   │   ├── Recipe/                 # 레시피 목록 · 상세 · 북마크
-│   │   └── Setting/                # 설정
-│   │       ├── SoundMode/          # 사운드 모드
-│   │       ├── TimerEndSound/      # 종료음 선택
-│   │       ├── Notification/       # 알림 권한
-│   │       ├── AppInfo/            # 앱 정보 · 버전 확인
-│   │       ├── PrivacyPolicy/      # 개인정보 처리방침
-│   │       └── Contact/            # 문의하기(메일)
+│   ├── Features/                          # 기능별 화면 모듈 (View · Feature · Client)
+│   │   ├── Splash/                         # 스플래시 화면
+│   │   │   ├── SplashView.swift
+│   │   │   └── Splash.xcstrings
+│   │   │
+│   │   ├── Timer/                          # 계란 타이머 (핵심 기능)
+│   │   │   ├── TimerFeature.swift          #  └ TimerFeature (상태·리듀서)
+│   │   │   ├── TimerView.swift             #     타이머 화면
+│   │   │   ├── NotificationClient.swift    #     알림 Client
+│   │   │   ├── TimerPersistenceClient.swift#     상태 복원 Client
+│   │   │   ├── CompletionSoundPlayer.swift #     완료음 재생
+│   │   │   ├── LiveActivityClient.swift    #     다이나믹 아일랜드 제어 Client (ActivityKit)
+│   │   │   ├── EggTimerWidgetAttributes.swift #  Live Activity 공유 Attributes (앱↔위젯)
+│   │   │   └── Timer.xcstrings
+│   │   │
+│   │   ├── Recipe/                         # 레시피 목록 · 상세 · 북마크
+│   │   │   ├── RecipeFeature.swift
+│   │   │   ├── RecipeView.swift
+│   │   │   ├── RecipeDetailView.swift
+│   │   │   ├── SavedRecipeView.swift
+│   │   │   ├── BookmarksClient.swift
+│   │   │   ├── Recipe.swift
+│   │   │   └── Recipe.xcstrings
+│   │   │
+│   │   └── Setting/                        # 설정
+│   │       ├── SettingFeature.swift
+│   │       ├── SettingView.swift
+│   │       ├── Setting.xcstrings
+│   │       ├── SoundMode/                  # 사운드 모드
+│   │       │   ├── SoundMode.swift
+│   │       │   ├── SoundModeView.swift
+│   │       │   └── SoundSettingsClient.swift
+│   │       ├── TimerEndSound/              # 종료음 선택
+│   │       │   ├── TimerEndSound.swift
+│   │       │   └── TimerEndSoundView.swift
+│   │       ├── Notification/               # 알림 권한
+│   │       │   └── NotificationView.swift
+│   │       ├── AppInfo/                    # 앱 정보 · 버전 확인
+│   │       │   ├── AppInfoView.swift
+│   │       │   └── AppStoreClient.swift
+│   │       ├── PrivacyPolicy/              # 개인정보 처리방침
+│   │       │   └── PrivacyPolicyView.swift
+│   │       └── Contact/                    # 문의하기(메일)
+│   │           └── MailComposeView.swift
 │   │
-│   ├── Resources/                  # 리소스
-│   │   ├── html/                   # 개인정보 처리방침 등 웹뷰 리소스
-│   │   ├── sound/                  # 완료 알림음
-│   │   └── Recipes.json            # 레시피 데이터
+│   ├── Resources/                         # 리소스
+│   │   ├── html/                           # 개인정보 처리방침 등 웹뷰 리소스
+│   │   ├── sound/                          # 완료 알림음
+│   │   └── Recipes.json                    # 레시피 데이터
 │   │
-│   ├── Assets.xcassets/            # 이미지 및 컬러 리소스
-│   ├── Fonts/                      # 폰트
-│   └── InfoPlist.xcstrings         # 다국어 문자열 리소스
+│   ├── Assets.xcassets/                    # 이미지 및 컬러 리소스
+│   └── Fonts/                              # 폰트
 │
-└── EggTimerTests/                  # 유닛 테스트 타깃
-    └── EggTimerTests.swift         # TimerFeature 테스트 (TestStore 기반)
+├── EggTimerWidget/                        # 위젯 익스텐션 타깃 (다이나믹 아일랜드 / Live Activity)
+│   ├── EggTimerWidgetBundle.swift         #  └ 위젯 번들 진입점
+│   ├── EggTimerWidgetLiveActivity.swift   #     잠금화면 + 다이나믹 아일랜드 UI
+│   ├── Assets.xcassets/                    #     위젯 전용 에셋 (WidgetBackground 등)
+│   ├── Localizable.xcstrings               #     위젯 다국어 문자열
+│   └── Info.plist                          #     위젯 익스텐션 Info.plist
+│
+└── EggTimerTests/                         # 유닛 테스트 타깃
+    └── EggTimerTests.swift                # TimerFeature 테스트 (TestStore 기반)
 ```
 
 ## License
