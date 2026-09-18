@@ -60,6 +60,9 @@ struct WeeklyEggWidgetView: View {
                     .font(.eggWidgetTitle)
                     .foregroundStyle(.white)
                     .lineSpacing(2)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.7)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 weekdayRow(completion: completion)
             }
