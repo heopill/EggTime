@@ -11,6 +11,8 @@ import SwiftUI
 @main
 struct EggTimerWidgetBundle: WidgetBundle {
     var body: some Widget {
+        TodayEggWidget()
+        WeeklyEggWidget()
         EggTimerWidgetLiveActivity()
     }
 }
