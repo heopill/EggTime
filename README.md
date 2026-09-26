@@ -68,7 +68,7 @@
 | 프로필 | 이름 | 역할 | 담당 업무 | GitHub |
 | :---: | :---: | :---: | :---: | :---: |
 | <img src="https://github.com/heopill.png" width="80px"> | **허성필** | **PM, iOS** | 프로젝트 매니징, 타이머 로직 및 상태 복원, <br> 레시피/설정 기능, 알림 처리, UI 컴포넌트 개발 | [🔗](https://github.com/heopill) |
-| <img src="https://github.com/user-attachments/assets/17de58cc-bc5a-472c-a668-8b9b69f46907" width="80px"> | **염지윤** | **Designer** | 전체 UI/UX 컨셉 설계, 디자인 시스템 구축, <br> 계란 · 아이콘 에셋 및 스토어 에셋 제작 | - |
+| <img src="https://github.com/user-attachments/assets/17de58cc-bc5a-472c-a668-8b9b69f46907" width="80px"> | **염지윤** | **Designer** | 전체 UI/UX 컨셉 설계, 디자인 시스템 구축, <br> 계란 · 아이콘 에셋 및 스토어 에셋 제작 | [🔗](https://github.com/JiyunYeom) |
 
 <br>
 
@@ -147,7 +147,7 @@ EggTimer/
 │   ├── InfoPlist.xcstrings                # 다국어 문자열 리소스
 │   │
 │   ├── Common/                            # 공통 모듈
-│   │   ├── Components/                     # 공통 UI 컴포넌트
+│   │   ├── Components/                    # 공통 UI 컴포넌트
 │   │   │   ├── AppBarView.swift
 │   │   │   ├── CustomAlertView.swift
 │   │   │   ├── EggInfoView.swift
@@ -171,19 +171,19 @@ EggTimer/
 │   │   ├── FontStyle.swift                 # 폰트 스타일 정의
 │   │   └── UINavigationController+SwipeBack.swift  # 스와이프 백 제스처
 │   │
-│   ├── Features/                          # 기능별 화면 모듈 (View · Feature · Client)
+│   ├── Features/                           # 기능별 화면 모듈 (View · Feature · Client)
 │   │   ├── Splash/                         # 스플래시 화면
 │   │   │   ├── SplashView.swift
 │   │   │   └── Splash.xcstrings
 │   │   │
-│   │   ├── Timer/                          # 계란 타이머 (핵심 기능)
-│   │   │   ├── TimerFeature.swift          #  └ TimerFeature (상태·리듀서)
-│   │   │   ├── TimerView.swift             #     타이머 화면
-│   │   │   ├── NotificationClient.swift    #     알림 Client
-│   │   │   ├── TimerPersistenceClient.swift#     상태 복원 Client
-│   │   │   ├── CompletionSoundPlayer.swift #     완료음 재생
-│   │   │   ├── LiveActivityClient.swift    #     다이나믹 아일랜드 제어 Client (ActivityKit)
-│   │   │   ├── EggTimerWidgetAttributes.swift #  Live Activity 공유 Attributes (앱↔위젯)
+│   │   ├── Timer/                              # 계란 타이머 (핵심 기능)
+│   │   │   ├── TimerFeature.swift              #  └ TimerFeature (상태·리듀서)
+│   │   │   ├── TimerView.swift                 #     타이머 화면
+│   │   │   ├── NotificationClient.swift        #     알림 Client
+│   │   │   ├── TimerPersistenceClient.swift    #     상태 복원 Client
+│   │   │   ├── CompletionSoundPlayer.swift     #     완료음 재생
+│   │   │   ├── LiveActivityClient.swift        #     다이나믹 아일랜드 제어 Client (ActivityKit)
+│   │   │   ├── EggTimerWidgetAttributes.swift  #  Live Activity 공유 Attributes (앱↔위젯)
 │   │   │   └── Timer.xcstrings
 │   │   │
 │   │   ├── Recipe/                         # 레시피 목록 · 상세 · 북마크
@@ -216,7 +216,7 @@ EggTimer/
 │   │       └── Contact/                    # 문의하기(메일)
 │   │           └── MailComposeView.swift
 │   │
-│   ├── Resources/                         # 리소스
+│   ├── Resources/                          # 리소스
 │   │   ├── html/                           # 개인정보 처리방침 등 웹뷰 리소스
 │   │   ├── sound/                          # 완료 알림음
 │   │   └── Recipes.json                    # 레시피 데이터
@@ -224,15 +224,15 @@ EggTimer/
 │   ├── Assets.xcassets/                    # 이미지 및 컬러 리소스
 │   └── Fonts/                              # 폰트
 │
-├── EggTimerWidget/                        # 위젯 익스텐션 타깃 (다이나믹 아일랜드 / Live Activity)
-│   ├── EggTimerWidgetBundle.swift         #  └ 위젯 번들 진입점
-│   ├── EggTimerWidgetLiveActivity.swift   #     잠금화면 + 다이나믹 아일랜드 UI
+├── EggTimerWidget/                         # 위젯 익스텐션 타깃 (다이나믹 아일랜드 / Live Activity)
+│   ├── EggTimerWidgetBundle.swift          #  └ 위젯 번들 진입점
+│   ├── EggTimerWidgetLiveActivity.swift    #     잠금화면 + 다이나믹 아일랜드 UI
 │   ├── Assets.xcassets/                    #     위젯 전용 에셋 (WidgetBackground 등)
 │   ├── Localizable.xcstrings               #     위젯 다국어 문자열
 │   └── Info.plist                          #     위젯 익스텐션 Info.plist
 │
-└── EggTimerTests/                         # 유닛 테스트 타깃
-    └── EggTimerTests.swift                # TimerFeature 테스트 (TestStore 기반)
+└── EggTimerTests/                          # 유닛 테스트 타깃
+    └── EggTimerTests.swift                 # TimerFeature 테스트 (TestStore 기반)
 ```
 
 ## License
