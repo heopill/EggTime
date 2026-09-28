@@ -7,7 +7,7 @@
   에그타임 (Egg Time)
   <p align="center">
   <img src="https://img.shields.io/badge/프로젝트 기간-2026.07.02 ~ -fab2ac?style=flat&logo=&logoColor=white" alt="프로젝트 기간" />
-  <img src="https://img.shields.io/badge/release-v26.1.0-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
+  <img src="https://img.shields.io/badge/release-v26.2.0-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
   </p>
   <p align="center">
     <a href="https://apps.apple.com/kr/app/에그타임-계란-타이머/id6794049013">
@@ -48,6 +48,11 @@
 * **앱을 벗어나도 이어지는 타이머** : 타이머를 시작하면 다이나믹 아일랜드와 잠금화면에 남은 시간이 실시간으로 표시되어, 앱을 닫고 다른 작업을 해도 조리 상황을 계속 확인할 수 있습니다.
 * **상황별 최적 표시** : 다이나믹 아일랜드의 컴팩트 · 확장 · 미니멀 상태에 맞춰 안내 문구, 카운트다운, 상태 아이콘을 각각 알맞게 배치합니다.
 * **완료 후에도 유지되는 배너** : 조리가 끝나면 곧바로 사라지지 않고 **완료 디자인으로 전환**되어 일정 시간(30분) 동안 남아 있어, 완료 시점을 놓치지 않습니다.
+
+### 🧩 홈 화면 위젯
+* 오늘의 에그타임 : 오늘 만든 반숙·완숙 횟수를 홈 화면에서 한눈에 확인합니다. 날짜가 바뀌면 자동으로 0회로 초기화됩니다.
+* 이번 주 나의 에그타임 : 이번 주(월~일) 에그타임을 완료한 요일을 체크 표시로 보여줍니다.
+* 자동 갱신 : 타이머를 완료하면 위젯에 바로 반영되고, 날짜가 바뀌면 자정에 맞춰 갱신됩니다. App Group으로 앱과 데이터를 공유합니다.
 
 ### 🍳 계란 레시피
 * **카테고리별 탐색** : 삶은 계란 · 프라이 · 스크램블 · 오믈렛 등 분류별로 원하는 레시피만 골라볼 수 있습니다.
@@ -116,12 +121,16 @@
 ## 📸 App Previews
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c9ae1fc2-7091-4db8-baf3-a4caeb2c08f5" width="19%" alt="앱 미리보기1" />
-  <img src="https://github.com/user-attachments/assets/ed2956c2-7329-4d97-977c-e8269b6cc118" width="19%" alt="앱 미리보기2" />
-  <img src="https://github.com/user-attachments/assets/f8cddab0-57b7-454f-9596-8440176ad6f3" width="19%" alt="앱 미리보기3" />
-  <img src="https://github.com/user-attachments/assets/6dfc33cc-12d1-44cf-bc67-48436b5a27c4" width="19%" alt="앱 미리보기4" />
-  <img src="https://github.com/user-attachments/assets/2c62b3a9-0e4b-42a3-ab3a-6fdbfaf42f3d" width="19%" alt="앱 미리보기5" />
+  <img src="https://github.com/user-attachments/assets/c9ae1fc2-7091-4db8-baf3-a4caeb2c08f5" width="13%" alt="앱 미리보기1" />
+  <img src="https://github.com/user-attachments/assets/ed2956c2-7329-4d97-977c-e8269b6cc118" width="13%" alt="앱 미리보기2" />
+  <img src="https://github.com/user-attachments/assets/f8cddab0-57b7-454f-9596-8440176ad6f3" width="13%" alt="앱 미리보기3" />
+  <img src="https://github.com/user-attachments/assets/99db1872-e602-4d2d-8605-237905488285" width="13%" alt="앱 미리보기6" />
+  <img src="https://github.com/user-attachments/assets/9372130c-182a-4502-bc6a-6213869f4ca7" width="13%" alt="앱 미리보기7" />
+  <img src="https://github.com/user-attachments/assets/6dfc33cc-12d1-44cf-bc67-48436b5a27c4" width="13%" alt="앱 미리보기4" />
+  <img src="https://github.com/user-attachments/assets/2c62b3a9-0e4b-42a3-ab3a-6fdbfaf42f3d" width="13%" alt="앱 미리보기5" />
 </p>
+
+
 
 <br>
 
@@ -134,6 +143,7 @@
 | **v26.0.2** | 2026.08.05 | 세로 모드 고정 및 오디오 세션 복구 |
 | **v26.0.3** | 2026.08.06 | 앱 스토어 버전 조회 로직 수정 |
 | **v26.1.0** | 2026.09.12 | 다이나믹 아일랜드 기능 추가 |
+| **v26.2.0** | 2026.09.28 | 위젯 기능 추가 |
 
 <br>
 
@@ -145,6 +155,8 @@ EggTimer/
 │   ├── EggTimerApp.swift                  # 앱 진입점
 │   ├── Info.plist                         # 앱 Info.plist (Live Activity 지원 키 포함)
 │   ├── InfoPlist.xcstrings                # 다국어 문자열 리소스
+│   ├── EggTimer.entitlements              # App Group 권한 (앱↔위젯 데이터 공유)
+│   ├── PrivacyInfo.xcprivacy              # 개인정보 매니페스트 (UserDefaults 사유 선언)
 │   │
 │   ├── Common/                            # 공통 모듈
 │   │   ├── Components/                    # 공통 UI 컴포넌트
@@ -167,6 +179,7 @@ EggTimer/
 │   │   │       ├── SettingInfoView.swift
 │   │   │       ├── SettingRadioOptionView.swift
 │   │   │       └── SettingVersionView.swift
+│   │   ├── EggRecord.swift                 # 앱↔위젯 공유 기록 모델·저장소 (App Group UserDefaults)
 │   │   ├── Color+Hex.swift                 # 컬러 유틸리티
 │   │   ├── FontStyle.swift                 # 폰트 스타일 정의
 │   │   └── UINavigationController+SwipeBack.swift  # 스와이프 백 제스처
@@ -183,7 +196,8 @@ EggTimer/
 │   │   │   ├── TimerPersistenceClient.swift    #     상태 복원 Client
 │   │   │   ├── CompletionSoundPlayer.swift     #     완료음 재생
 │   │   │   ├── LiveActivityClient.swift        #     다이나믹 아일랜드 제어 Client (ActivityKit)
-│   │   │   ├── EggTimerWidgetAttributes.swift  #  Live Activity 공유 Attributes (앱↔위젯)
+│   │   │   ├── EggTimerWidgetAttributes.swift  #     Live Activity 공유 Attributes (앱↔위젯)
+│   │   │   ├── EggRecordClient.swift           #     완료 기록 + 위젯 갱신 Client (WidgetCenter)
 │   │   │   └── Timer.xcstrings
 │   │   │
 │   │   ├── Recipe/                         # 레시피 목록 · 상세 · 북마크
@@ -224,12 +238,17 @@ EggTimer/
 │   ├── Assets.xcassets/                    # 이미지 및 컬러 리소스
 │   └── Fonts/                              # 폰트
 │
-├── EggTimerWidget/                         # 위젯 익스텐션 타깃 (다이나믹 아일랜드 / Live Activity)
-│   ├── EggTimerWidgetBundle.swift          #  └ 위젯 번들 진입점
+├── EggTimerWidget/                         # 위젯 익스텐션 타깃 (홈 화면 위젯 · 다이나믹 아일랜드 / Live Activity)
+│   ├── EggTimerWidgetBundle.swift          #  └ 위젯 번들 진입점 (Today · Weekly · LiveActivity 등록)
 │   ├── EggTimerWidgetLiveActivity.swift    #     잠금화면 + 다이나믹 아일랜드 UI
+│   ├── TodayEggWidget.swift                #     오늘의 에그타임 위젯 (Small) — 오늘 반숙·완숙 횟수
+│   ├── WeeklyEggWidget.swift               #     이번 주 나의 에그타임 위젯 (Medium) — 요일별 완료 체크
+│   ├── EggRecordProvider.swift             #     위젯 타임라인 프로바이더 + 디자인 토큰(폰트·배경)
 │   ├── Assets.xcassets/                    #     위젯 전용 에셋 (WidgetBackground 등)
 │   ├── Localizable.xcstrings               #     위젯 다국어 문자열
-│   └── Info.plist                          #     위젯 익스텐션 Info.plist
+│   ├── EggTimerWidget.entitlements         #     위젯 App Group 권한
+│   ├── PrivacyInfo.xcprivacy               #     위젯 개인정보 매니페스트
+│   └── Info.plist                          #     위젯 익스텐션 Info.plist (UIAppFonts 포함)
 │
 └── EggTimerTests/                          # 유닛 테스트 타깃
     └── EggTimerTests.swift                 # TimerFeature 테스트 (TestStore 기반)
