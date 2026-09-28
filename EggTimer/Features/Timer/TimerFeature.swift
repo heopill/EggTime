@@ -81,6 +81,7 @@ struct TimerFeature {
     @Dependency(\.timerPersistence) var persistence
     @Dependency(\.soundSettings) var soundSettings
     @Dependency(\.liveActivity) var liveActivity
+    @Dependency(\.eggRecord) var eggRecord
 
     nonisolated private enum CancelID {
         case timer
@@ -125,8 +126,8 @@ struct TimerFeature {
                         state.deadline = nil
                         state.cookingState = .completed
 
-                        // 남아 있을 수 있는 Live Activity를 정리한다
-                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() }, endActivityEffect())
+                        // 남아 있을 수 있는 Live Activity를 정리하고, 완료를 기록한다
+                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() }, endActivityEffect(), recordCompletionEffect(state.selectedEgg))
                     }
                     state.deadline = deadline
 
@@ -241,7 +242,7 @@ struct TimerFeature {
                     state.deadline = nil
                     state.cookingState = .completed
 
-                    return .merge(.cancel(id: CancelID.timer), clearEffect(), completeActivityEffect())
+                    return .merge(.cancel(id: CancelID.timer), clearEffect(), completeActivityEffect(), recordCompletionEffect(state.selectedEgg))
                 }
 
                 return .none
@@ -287,6 +288,15 @@ struct TimerFeature {
     private func cancelNotificationEffect() -> Effect<Action> {
         return .run { [notifications] _ in
             notifications.cancel()
+        }
+    }
+
+    // 타이머 완료를 에그타임 기록에 반영하는 이펙트 (완숙은 4단계 달걀)
+    private func recordCompletionEffect(_ egg: EggDoneness) -> Effect<Action> {
+        let isHardBoiled = egg == .four
+
+        return .run { [eggRecord] _ in
+            eggRecord.recordCompletion(isHardBoiled)
         }
     }
 
