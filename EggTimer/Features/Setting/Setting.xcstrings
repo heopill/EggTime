@@ -454,6 +454,105 @@
           }
         }
       }
+    },
+    "contactMailSubject" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[에그타임] 문의하기"
+          }
+        }
+      }
+    },
+    "contactMailRecipient" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "받는사람: %@"
+          }
+        }
+      }
+    },
+    "contactMailSubjectLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목: %@"
+          }
+        }
+      }
+    },
+    "contactMailGuide" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문의 내용을 아래에 작성해 주세요."
+          }
+        }
+      }
+    },
+    "contactMailAutoFilledNotice" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아래 정보는 문의 처리를 위해 자동으로 입력되었습니다."
+          }
+        }
+      }
+    },
+    "contactMailDevice" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기: %@"
+          }
+        }
+      }
+    },
+    "contactMailOSVersion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS 버전: %@"
+          }
+        }
+      }
+    },
+    "contactMailAppVersion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 버전: %@"
+          }
+        }
+      }
+    },
+    "contactMailLocale" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "언어/지역: %@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

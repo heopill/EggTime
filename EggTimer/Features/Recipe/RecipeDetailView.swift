@@ -53,7 +53,7 @@ struct RecipeDetailView: View {
                     .foregroundColor(Color("TextStrong"))
 
                 HStack(spacing: 8) {
-                    RecipeInfoView(iconName: "Stopwatch", text: "\(recipe.cookTime)분 조리")
+                    RecipeInfoView(iconName: "Stopwatch", text: String(format: String(localized: "recipeCookTime", table: "Recipe"), recipe.cookTime))
                     RecipeInfoView(iconName: "Fire", text: recipe.difficulty.label)
                 }
             }
@@ -61,14 +61,14 @@ struct RecipeDetailView: View {
             .padding(20)
 
             VStack(spacing: 0) {
-                RecipeSectionView(title: "설명") {
+                RecipeSectionView(title: String(localized: "recipeDescriptionSection", table: "Recipe")) {
                     Text(recipe.description)
                         .fontStyle(.body16)
                         .foregroundColor(Color("TextNormal"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
-                RecipeSectionView(title: "재료") {
+                RecipeSectionView(title: String(localized: "recipeIngredientsSection", table: "Recipe")) {
                     VStack(alignment: .leading, spacing: 4) {
                         ForEach(recipe.ingredients, id: \.self) { item in
                             listRow(marker: "•", text: item)
@@ -76,7 +76,7 @@ struct RecipeDetailView: View {
                     }
                 }
 
-                RecipeSectionView(title: "조리법") {
+                RecipeSectionView(title: String(localized: "recipeStepsSection", table: "Recipe")) {
                     VStack(alignment: .leading, spacing: 12) {
                         ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
                             listRow(marker: "\(index + 1).", text: step)

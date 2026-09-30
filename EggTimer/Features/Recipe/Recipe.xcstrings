@@ -99,6 +99,50 @@
           }
         }
       }
+    },
+    "recipeCookTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld분 조리"
+          }
+        }
+      }
+    },
+    "recipeDescriptionSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
+          }
+        }
+      }
+    },
+    "recipeIngredientsSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "재료"
+          }
+        }
+      }
+    },
+    "recipeStepsSection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "조리법"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
