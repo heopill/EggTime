@@ -4,6 +4,12 @@
     "EggTimer" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EggTime"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
