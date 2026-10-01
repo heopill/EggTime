@@ -43,7 +43,7 @@ enum Difficulty: String, Codable, Equatable {
 }
 
 extension Recipe {
-    // 번들의 Recipes.json에서 레시피 목록을 로드한다
+    // 번들의 Recipes.json에서 레시피 목록을 로드한다 (현재 앱 언어에 맞는 ko/en.lproj 파일이 자동으로 선택된다)
     static let all: [Recipe] = {
         guard let url = Bundle.main.url(forResource: "Recipes", withExtension: "json"),
               let data = try? Data(contentsOf: url),
