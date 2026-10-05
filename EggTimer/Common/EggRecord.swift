@@ -9,7 +9,7 @@
 import Foundation
 
 // 위젯과 데이터를 공유하기 위한 App Group 식별자
-enum AppGroup {
+nonisolated enum AppGroup {
     static let identifier = "group.dev.seongpil.EggTimer"
 }
 
