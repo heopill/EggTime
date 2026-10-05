@@ -140,7 +140,7 @@ struct EggTimerWidgetLiveActivity: Widget {
 
     // 상태별 안내 문구 (피그마 디자인대로 두 줄로 표시, 위젯 번들의 문자열 카탈로그로 로컬라이징)
     private func message(isCompleted: Bool) -> LocalizedStringResource {
-        return isCompleted ? "맛있는 계란이\n준비되었어요!" : "계란이 맛있게\n익고 있어요!"
+        return isCompleted ? "liveActivityCompletedMessage" : "liveActivityCookingMessage"
     }
 }
 
