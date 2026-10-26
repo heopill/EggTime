@@ -20,12 +20,36 @@ struct AppStoreLookup: Equatable, Sendable {
     let version: String
     // 앱스토어 상세 페이지 URL (업데이트 버튼 이동용)
     let url: URL
+    // 최신 버전이 요구하는 최소 iOS 버전 (예: "17.0")
+    let minimumOSVersion: String?
+}
+
+extension AppStoreLookup {
+    // 설치된 버전보다 앱스토어 버전이 높고, 이 기기의 iOS에서 받을 수 있으면 업데이트 대상이다
+    var isUpdateAvailable: Bool {
+        guard SettingVersionView.compareVersion(AppInfo.currentVersion, version) == .orderedAscending else {
+            return false
+        }
+
+        // 새 버전이 요구하는 iOS보다 낮은 기기는 업데이트를 받을 수 없으므로 알리지 않는다
+        guard let minimumOSVersion else {
+            return true
+        }
+        let os = ProcessInfo.processInfo.operatingSystemVersion
+        let currentOSVersion = "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
+
+        return SettingVersionView.compareVersion(currentOSVersion, minimumOSVersion) != .orderedAscending
+    }
 }
 
 // 앱스토어의 최신 버전/링크를 조회한다
 struct AppStoreClient: Sendable {
     // 최신 버전 정보를 조회한다 (미배포 상태이거나 조회 실패 시 nil)
     var lookup: @Sendable () async -> AppStoreLookup?
+    // 업데이트 알림에서 "나중에"를 누른 버전 (같은 버전은 다시 알리지 않는다)
+    var skippedVersion: @Sendable () -> String?
+    // "나중에"를 누른 버전을 저장한다
+    var skipVersion: @Sendable (String) -> Void
 }
 
 extension AppStoreClient: DependencyKey {
@@ -65,12 +89,23 @@ extension AppStoreClient: DependencyKey {
                   let trackURL = URL(string: trackURLString) else {
                 return nil
             }
+            let minimumOSVersion = first["minimumOsVersion"] as? String
 
-            return AppStoreLookup(version: version, url: trackURL)
+            return AppStoreLookup(version: version, url: trackURL, minimumOSVersion: minimumOSVersion)
+        },
+        skippedVersion: {
+            return UserDefaults.standard.string(forKey: "skippedUpdateVersion")
+        },
+        skipVersion: { version in
+            UserDefaults.standard.set(version, forKey: "skippedUpdateVersion")
         }
     )
 
-    static let previewValue = AppStoreClient(lookup: { nil })
+    static let previewValue = AppStoreClient(
+        lookup: { nil },
+        skippedVersion: { nil },
+        skipVersion: { _ in }
+    )
     static let testValue = previewValue
 }
 

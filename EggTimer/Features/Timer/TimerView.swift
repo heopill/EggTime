@@ -84,6 +84,21 @@ struct TimerView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: store.isResetAlertPresented)
+        .overlay {
+            // 앱스토어에 새 버전이 있으면 업데이트를 안내한다 (바깥을 탭하면 "나중에"와 같다)
+            if store.availableUpdate != nil {
+                CustomAlertView(
+                    title: String(localized: "appUpdateTitle", table: "Timer"),
+                    message: String(localized: "appUpdateMessage", table: "Timer"),
+                    confirmTitle: String(localized: "appUpdateNow", table: "Timer"),
+                    cancelTitle: String(localized: "appUpdateLater", table: "Timer"),
+                    confirmAction: { store.send(.updateTapped) },
+                    cancelAction: { store.send(.updateLaterTapped) }
+                )
+                .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: store.availableUpdate)
         .task {
             // 앱 첫 진입 시 알림 권한 요청
             store.send(.onAppear)

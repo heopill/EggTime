@@ -17,6 +17,8 @@ struct TimerFeature {
         // 타이머가 끝나는 목표 시각 (진행 중일 때만 값이 있음)
         var deadline: Date?
         var isResetAlertPresented: Bool = false
+        // 업데이트 알럿에 안내할 앱스토어 새 버전 (값이 있으면 알럿을 띄운다)
+        var availableUpdate: AppStoreLookup?
         var recipe = RecipeFeature.State()
         var setting = SettingFeature.State()
 
@@ -71,6 +73,9 @@ struct TimerFeature {
         case resetConfirmed
         case resetCancelled
         case timerTicked
+        case appStoreVersionLoaded(AppStoreLookup)
+        case updateTapped
+        case updateLaterTapped
         case recipe(RecipeFeature.Action)
         case setting(SettingFeature.Action)
     }
@@ -82,6 +87,8 @@ struct TimerFeature {
     @Dependency(\.soundSettings) var soundSettings
     @Dependency(\.liveActivity) var liveActivity
     @Dependency(\.eggRecord) var eggRecord
+    @Dependency(\.appStore) var appStore
+    @Dependency(\.openURL) var openURL
 
     nonisolated private enum CancelID {
         case timer
@@ -104,14 +111,18 @@ struct TimerFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                // 앱 첫 실행 시 알림 권한을 요청한다 (이미 응답했다면 프롬프트는 다시 뜨지 않음)
-                let authEffect: Effect<Action> = .run { [notifications] _ in
-                    _ = await notifications.requestAuthorization()
-                }
+                // 앱 첫 실행 시 알림 권한을 요청하고 (이미 응답했다면 프롬프트는 다시 뜨지 않음),
+                // 권한 창과 겹치지 않도록 그다음에 앱스토어 새 버전을 확인한다
+                let launchEffect: Effect<Action> = .concatenate(
+                    .run { [notifications] _ in
+                        _ = await notifications.requestAuthorization()
+                    },
+                    checkUpdateEffect()
+                )
 
                 // 저장된(강제 종료 전) 타이머가 있으면 복원한다
                 guard let saved = persistence.load() else {
-                    return authEffect
+                    return launchEffect
                 }
                 state.selectedEgg = EggDoneness(rawValue: saved.eggRawValue) ?? state.selectedEgg
 
@@ -127,12 +138,12 @@ struct TimerFeature {
                         state.cookingState = .completed
 
                         // 남아 있을 수 있는 Live Activity를 정리하고, 완료를 기록한다
-                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() }, endActivityEffect(), recordCompletionEffect(state.selectedEgg))
+                        return .merge(launchEffect, .run { [persistence] _ in persistence.clear() }, endActivityEffect(), recordCompletionEffect(state.selectedEgg))
                     }
                     state.deadline = deadline
 
                     // 진행 중이던 타이머의 Live Activity를 다시 띄운다
-                    return .merge(authEffect, startTimer(), startActivityEffect(startDate: date.now, deadline: deadline))
+                    return .merge(launchEffect, startTimer(), startActivityEffect(startDate: date.now, deadline: deadline))
                 } else {
                     // 일시정지 상태이던 타이머
                     // 일시정지 후 1시간이 지났으면 복원하지 않고 초기화한다
@@ -140,12 +151,12 @@ struct TimerFeature {
                        date.now.timeIntervalSince(pausedAt) > Self.pausedExpiration {
                         state.remainingSeconds = state.selectedEgg.duration
 
-                        return .merge(authEffect, .run { [persistence] _ in persistence.clear() })
+                        return .merge(launchEffect, .run { [persistence] _ in persistence.clear() })
                     }
                     state.remainingSeconds = saved.remainingSeconds
                     state.cookingState = .paused
 
-                    return authEffect
+                    return launchEffect
                 }
 
             case .binding(\.selectedEgg):
@@ -247,9 +258,54 @@ struct TimerFeature {
 
                 return .none
 
+            case let .appStoreVersionLoaded(lookup):
+                // 새 버전이 없거나 이 기기에서 받을 수 없거나, "나중에"를 누른 버전이거나,
+                // 다른 알럿이 떠 있으면 이번 실행에서는 알리지 않는다
+                guard lookup.isUpdateAvailable,
+                      lookup.version != appStore.skippedVersion(),
+                      !state.isResetAlertPresented else {
+                    return .none
+                }
+                state.availableUpdate = lookup
+
+                return .none
+
+            case .updateTapped:
+                // 알럿을 닫고 앱스토어의 앱 페이지를 연다
+                guard let url = state.availableUpdate?.url else {
+                    return .none
+                }
+                state.availableUpdate = nil
+
+                return .run { [openURL] _ in
+                    await openURL(url)
+                }
+
+            case .updateLaterTapped:
+                // 같은 버전은 다시 알리지 않도록 "나중에"를 누른 버전을 저장하고 알럿을 닫는다
+                guard let version = state.availableUpdate?.version else {
+                    return .none
+                }
+                state.availableUpdate = nil
+
+                return .run { [appStore] _ in
+                    appStore.skipVersion(version)
+                }
+
             case .recipe, .setting:
                 return .none
             }
+        }
+    }
+
+    // 앱스토어 최신 버전을 조회해 업데이트 안내 여부를 판단하도록 전달하는 이펙트
+    private func checkUpdateEffect() -> Effect<Action> {
+        return .run { [appStore] send in
+            guard let lookup = await appStore.lookup() else {
+                return
+            }
+
+            await send(.appStoreVersionLoaded(lookup))
         }
     }
 
