@@ -17,6 +17,8 @@ struct SettingFeature {
         var isNotificationAuthorized: Bool = false
         // 선택된 타이머 종료음 (UserDefaults가 원본, 이 값은 화면 표시용 사본)
         var timerEndSound: TimerEndSound = .fanfare
+        // 선택된 앱 언어 (AppleLanguages가 원본, 이 값은 화면 표시용 사본)
+        var appLanguage: AppLanguage = .system
         // 앱스토어에서 조회한 최신 버전 정보 (미배포/조회 실패 시 nil)
         var appStoreLookup: AppStoreLookup?
     }
@@ -26,6 +28,7 @@ struct SettingFeature {
         case notification
         case soundMode
         case timerEndSound
+        case appLanguage
         case appInfo
         case privacyPolicy
     }
@@ -40,6 +43,8 @@ struct SettingFeature {
         case soundModeSelected(SoundMode)
         case timerEndSoundTapped
         case timerEndSoundSelected(TimerEndSound)
+        case appLanguageTapped
+        case appLanguageSelected(AppLanguage)
         case appInfoTapped
         case appStoreVersionRequested
         case appStoreVersionLoaded(AppStoreLookup?)
@@ -50,6 +55,7 @@ struct SettingFeature {
     @Dependency(\.soundSettings) var soundSettings
     @Dependency(\.notifications) var notifications
     @Dependency(\.appStore) var appStore
+    @Dependency(\.appLanguage) var appLanguage
 
     var body: some Reducer<State, Action> {
         BindingReducer()
@@ -57,9 +63,10 @@ struct SettingFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                // 저장된 사운드 모드와 종료음을 불러와 반영한다
+                // 저장된 사운드 모드, 종료음, 앱 언어를 불러와 반영한다
                 state.soundMode = soundSettings.load()
                 state.timerEndSound = soundSettings.loadEndSound()
+                state.appLanguage = appLanguage.load()
 
                 return .none
 
@@ -102,6 +109,18 @@ struct SettingFeature {
 
                 return .run { [soundSettings] _ in
                     soundSettings.saveEndSound(sound)
+                }
+
+            case .appLanguageTapped:
+                state.path.append(.appLanguage)
+
+                return .none
+
+            case let .appLanguageSelected(language):
+                state.appLanguage = language
+
+                return .run { [appLanguage] _ in
+                    appLanguage.save(language)
                 }
 
             case .appInfoTapped:

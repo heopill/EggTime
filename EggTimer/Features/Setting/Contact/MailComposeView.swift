@@ -13,14 +13,14 @@ enum SupportInfo {
 
     // 메일 제목
     static var subject: String {
-        return "[에그타임] 문의하기"
+        return String(localized: "contactMailSubject", table: "Setting")
     }
 
     // 메일을 보낼 수 없을 때 클립보드에 복사할 전체 정보 (받는사람 + 제목 + 본문)
     static var clipboardText: String {
         return """
-        받는사람: \(recipient)
-        제목: \(subject)
+        \(localized("contactMailRecipient", recipient))
+        \(localized("contactMailSubjectLabel", subject))
 
         \(body)
         """
@@ -29,17 +29,22 @@ enum SupportInfo {
     // 문의 내용 안내 + 기기/앱 정보가 채워진 본문
     static var body: String {
         return """
-        문의 내용을 아래에 작성해 주세요.
+        \(String(localized: "contactMailGuide", table: "Setting"))
 
 
         ────────────────────
-        아래 정보는 문의 처리를 위해 자동으로 입력되었습니다.
-        기기: \(deviceModelName)
-        iOS 버전: \(UIDevice.current.systemVersion)
-        앱 버전: \(appVersion)
-        언어/지역: \(Locale.current.identifier)
+        \(String(localized: "contactMailAutoFilledNotice", table: "Setting"))
+        \(localized("contactMailDevice", deviceModelName))
+        \(localized("contactMailOSVersion", UIDevice.current.systemVersion))
+        \(localized("contactMailAppVersion", appVersion))
+        \(localized("contactMailLocale", Locale.current.identifier))
         ────────────────────
         """
+    }
+
+    // Setting 문자열 카탈로그의 "라벨: %@" 형식 문구에 값을 채워 넣는다
+    private static func localized(_ key: String.LocalizationValue, _ value: String) -> String {
+        return String(format: String(localized: key, table: "Setting"), value)
     }
 
     // 앱 버전 (표시 버전 + 빌드 번호)

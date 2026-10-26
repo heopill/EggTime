@@ -7,7 +7,7 @@
   에그타임 (Egg Time)
   <p align="center">
   <img src="https://img.shields.io/badge/프로젝트 기간-2026.07.02 ~ -fab2ac?style=flat&logo=&logoColor=white" alt="프로젝트 기간" />
-  <img src="https://img.shields.io/badge/release-v26.2.0-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
+  <img src="https://img.shields.io/badge/release-v26.2.1-4fc08d?style=flat&logo=apple&logoColor=white" alt="릴리즈 버전" />
   </p>
   <p align="center">
     <a href="https://apps.apple.com/kr/app/에그타임-계란-타이머/id6794049013">
@@ -144,6 +144,7 @@
 | **v26.0.3** | 2026.08.06 | 앱 스토어 버전 조회 로직 수정 |
 | **v26.1.0** | 2026.09.12 | 다이나믹 아일랜드 기능 추가 |
 | **v26.2.0** | 2026.09.28 | 위젯 기능 추가 |
+| **v26.2.1** | 2026.10.07 | 앱 언어 변경 기능 추가 |
 
 <br>
 

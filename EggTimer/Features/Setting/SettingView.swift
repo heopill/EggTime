@@ -115,6 +115,9 @@ struct SettingView: View {
         case .timerEndSound:
             TimerEndSoundView(store: store)
 
+        case .appLanguage:
+            AppLanguageView(store: store)
+
         case .appInfo:
             AppInfoView(store: store)
 
@@ -136,6 +139,9 @@ struct SettingView: View {
                 },
                 SettingOptionItem(iconName: "Music", title: String(localized: "Timer End Sound", table: "Setting")) {
                     store.send(.timerEndSoundTapped)
+                },
+                SettingOptionItem(iconName: "Language", title: String(localized: "appLanguage", table: "Setting")) {
+                    store.send(.appLanguageTapped)
                 }
             ]
         )

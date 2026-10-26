@@ -1,0 +1,523 @@
+[
+  {
+    "id": "EggToast",
+    "title": "Egg Toast",
+    "cookTime": 10,
+    "difficulty": "easy",
+    "description": "Egg toast is a simple dish that pairs crispy toasted bread with soft, tender eggs. It's great for breakfast, brunch, or a quick snack, and adding cheese, ham, or vegetables turns it into an even more satisfying meal.",
+    "ingredients": [
+      "2 slices of bread",
+      "2 eggs",
+      "1 tbsp butter",
+      "1 slice of cheese (optional)",
+      "1 tbsp mayonnaise",
+      "1 tbsp ketchup",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Melt the butter in a frying pan and toast the bread on both sides until golden brown.",
+      "Cook the eggs scrambled or fried, however you like them.",
+      "Season the eggs with salt and pepper.",
+      "Spread mayonnaise and ketchup on the toast, then top with the cheese and eggs to finish."
+    ]
+  },
+  {
+    "id": "EggSalad",
+    "title": "Egg Salad",
+    "cookTime": 15,
+    "difficulty": "easy",
+    "description": "Made with tender boiled eggs and creamy mayonnaise, egg salad is a simple yet filling dish that works as a meal or a snack. Use it as a sandwich filling, or enjoy it with crackers or bread. Add vegetables or herbs to taste for an even fresher flavor.",
+    "ingredients": [
+      "4 eggs",
+      "3 tbsp mayonnaise",
+      "1 tsp Dijon mustard (optional)",
+      "2 tbsp chopped onion",
+      "1 tbsp chopped pickles",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Boil the eggs to your preferred doneness, cool them in cold water, and peel.",
+      "Place the boiled eggs in a bowl and mash them with a fork.",
+      "Add the mayonnaise, mustard, chopped onion, and chopped pickles, and mix well.",
+      "Season with salt and pepper, and add parsley if you like.",
+      "Serve on bread or crackers, or enjoy it on its own like a salad."
+    ]
+  },
+  {
+    "id": "NattoSoyEggRice",
+    "title": "Natto Soy Sauce Egg Rice",
+    "cookTime": 5,
+    "difficulty": "easy",
+    "description": "Natto soy sauce egg rice is a Japanese-style rice bowl topped with natto and egg and seasoned with soy sauce. The nutty flavor of natto and the soft texture of egg go perfectly together for a simple yet nutritious meal.",
+    "ingredients": [
+      "1 bowl of warm rice",
+      "1 pack of natto",
+      "1 egg",
+      "1 tbsp soy sauce",
+      "1 tsp sesame oil",
+      "A little crumbled seaweed",
+      "A little chopped green onion",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Stir the natto with its included sauce until it becomes sticky.",
+      "Put the warm rice in a bowl and top it with the natto.",
+      "Place a fried egg in the center.",
+      "Add the soy sauce and sesame oil, then sprinkle with seaweed, green onion, and sesame seeds.",
+      "Mix everything together and enjoy."
+    ]
+  },
+  {
+    "id": "Eggzaro",
+    "title": "Eggzaro",
+    "cookTime": 10,
+    "difficulty": "easy",
+    "description": "Eggzaro is a way of eating soft-boiled eggs with extra virgin olive oil. Combining protein with healthy fats helps you stay full longer, making it a popular choice for breakfast or a light meal.",
+    "ingredients": [
+      "2 soft-boiled eggs",
+      "1–2 tbsp extra virgin olive oil",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley or herbs (optional)"
+    ],
+    "steps": [
+      "Soft-boil the eggs and peel them.",
+      "Place them in a bowl and drizzle evenly with extra virgin olive oil.",
+      "Season with salt and pepper.",
+      "Sprinkle with parsley or herbs if you like.",
+      "Enjoy as is, or serve with whole wheat bread or avocado."
+    ]
+  },
+  {
+    "id": "SalmonEggToast",
+    "title": "Salmon Egg Toast",
+    "cookTime": 15,
+    "difficulty": "easy",
+    "description": "Salmon scrambled egg toast is a brunch dish of soft scrambled eggs and delicate salmon served on crispy toast. The rich eggs and flavorful salmon go together beautifully for a simple yet special meal.",
+    "ingredients": [
+      "2 slices of bread",
+      "2 eggs",
+      "80g salmon",
+      "2 tbsp milk",
+      "1 tbsp butter",
+      "2 tbsp cream cheese",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little dill or parsley (optional)"
+    ],
+    "steps": [
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Melt the butter in a pan, pour in the egg mixture, and make soft scrambled eggs.",
+      "Toast the bread until golden brown.",
+      "Spread cream cheese on the toast and top with the salmon.",
+      "Add the scrambled eggs, then sprinkle with pepper and herbs to finish."
+    ]
+  },
+  {
+    "id": "SoyMarinatedEgg",
+    "title": "Soy-Marinated Soft-Boiled Eggs",
+    "cookTime": 30,
+    "difficulty": "easy",
+    "description": "Soy-marinated soft-boiled eggs are a popular Korean side dish made by marinating soft-boiled eggs in a soy sauce mixture. The sweet and salty marinade soaks deep into the eggs, making them perfect with warm rice, and just a few simple ingredients deliver rich, savory flavor.",
+    "ingredients": [
+      "6 soft-boiled eggs",
+      "150ml soy sauce",
+      "150ml water",
+      "2 tbsp sugar",
+      "1 tbsp minced garlic",
+      "1 green chili pepper",
+      "1 red chili pepper",
+      "1/2 onion",
+      "1/2 green onion",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Soft-boil the eggs, cool them in cold water, and peel.",
+      "Cut the onion, green onion, and green and red chili peppers into bite-sized pieces.",
+      "In a container, mix the soy sauce, water, and sugar until the sugar dissolves.",
+      "Add the minced garlic and vegetables, then put in the eggs so they are fully submerged in the marinade.",
+      "Marinate in the refrigerator for at least 6 hours, ideally a full day, then enjoy with warm rice."
+    ]
+  },
+  {
+    "id": "ShrimpEggFriedRice",
+    "title": "Shrimp Egg Fried Rice",
+    "cookTime": 20,
+    "difficulty": "easy",
+    "description": "Shrimp egg fried rice is an easy one-bowl dish made by stir-frying plump shrimp and soft eggs with fluffy rice. Light yet full of savory flavor, it's a crowd-pleaser and a great way to get a quick meal on a busy day.",
+    "ingredients": [
+      "1 bowl of rice",
+      "100g shrimp",
+      "2 eggs",
+      "1/2 green onion",
+      "2 tbsp cooking oil",
+      "1 tbsp soy sauce",
+      "1/2 tbsp oyster sauce",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "1 tsp sesame oil",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Clean the shrimp and thinly slice the green onion.",
+      "Heat the oil in a pan, scramble the eggs, and set them aside.",
+      "In the same pan, stir-fry the green onion until fragrant, then add the shrimp and cook through.",
+      "Add the rice and stir-fry until fluffy, then season with soy sauce and oyster sauce.",
+      "Return the scrambled eggs to the pan, stir-fry together, and finish with sesame oil and sesame seeds."
+    ]
+  },
+  {
+    "id": "CheeseCornEggFriedRice",
+    "title": "Cheese Corn Egg Fried Rice",
+    "cookTime": 25,
+    "difficulty": "easy",
+    "description": "Cheese corn egg fried rice is a hearty one-bowl dish made with soft scrambled eggs, sweet corn, and rich cheese. Melted cheese and moist eggs blend into fluffy fried rice for a dish that people of all ages will love.",
+    "ingredients": [
+      "1 bowl of rice",
+      "2 eggs",
+      "50g canned corn",
+      "50g mozzarella cheese",
+      "1 tbsp butter",
+      "1/2 green onion",
+      "1 tbsp cooking oil",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Whisk the eggs with salt and pepper.",
+      "Melt the butter in a pan, make soft scrambled eggs, and set them aside.",
+      "In the same pan, stir-fry the green onion until fragrant, then add the corn and rice and stir-fry until fluffy.",
+      "Return the scrambled eggs to the pan and stir-fry together, then add the mozzarella and mix until melted.",
+      "Transfer to a plate and sprinkle with parsley to finish."
+    ]
+  },
+  {
+    "id": "TunaEggPoke",
+    "title": "Tuna Egg Poke",
+    "cookTime": 15,
+    "difficulty": "easy",
+    "description": "Tuna egg poke is a healthy bowl of fresh vegetables, light tuna, and boiled egg served over warm rice. Crunchy green beans and nutty chickpeas add both texture and nutrition, making it an easy yet satisfying meal.",
+    "ingredients": [
+      "1 bowl of rice",
+      "100g tuna (canned or fresh)",
+      "1 boiled egg",
+      "50g green beans",
+      "50g chickpeas",
+      "1/2 cucumber",
+      "Sauce of your choice",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Blanch the green beans in boiling water for 2–3 minutes, rinse in cold water, and cut into bite-sized pieces.",
+      "Boil the chickpeas, or drain them well if using canned.",
+      "Cut the cucumber into bite-sized pieces and halve the boiled egg.",
+      "Put warm rice in a bowl and arrange the tuna, green beans, chickpeas, cucumber, and boiled egg on top.",
+      "Drizzle with your favorite sauce, sprinkle with sesame seeds, and mix well before eating."
+    ]
+  },
+  {
+    "id": "EggYakisoba",
+    "title": "Egg Yakisoba",
+    "cookTime": 20,
+    "difficulty": "medium",
+    "description": "Egg yakisoba is a Japanese stir-fried noodle dish of chewy yakisoba noodles topped with a fried egg with a runny yolk. The sweet and savory sauce and rich egg come together for a deeper flavor and a filling meal.",
+    "ingredients": [
+      "1 serving of yakisoba noodles",
+      "2 eggs",
+      "100g cabbage",
+      "1/2 onion",
+      "A little carrot",
+      "2 tbsp cooking oil",
+      "3 tbsp yakisoba sauce",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little bonito flakes"
+    ],
+    "steps": [
+      "Cut the cabbage, onion, and carrot into bite-sized pieces.",
+      "Heat the oil in a pan, stir-fry the vegetables, then add the yakisoba noodles and stir-fry together.",
+      "Add the yakisoba sauce and stir-fry until the noodles and vegetables are evenly coated.",
+      "In another pan, fry the eggs until the whites are set but the yolks are still runny.",
+      "Plate the yakisoba, top with the fried eggs, and sprinkle with bonito flakes to finish."
+    ]
+  },
+  {
+    "id": "EggTofuBraised",
+    "title": "Braised Egg and Tofu",
+    "cookTime": 25,
+    "difficulty": "medium",
+    "description": "Braised egg and tofu is a hearty side dish of golden pan-fried tofu and fried eggs simmered together in a savory soy sauce glaze. The soft tofu and tender eggs pair perfectly with rice.",
+    "ingredients": [
+      "1 block of tofu",
+      "2 eggs",
+      "1/2 onion",
+      "1/2 green onion",
+      "1 green chili pepper (optional)",
+      "2 tbsp cooking oil",
+      "3 tbsp soy sauce",
+      "100ml water",
+      "1 tbsp minced garlic",
+      "1 tbsp sugar",
+      "1 tsp sesame oil",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Cut the tofu into bite-sized pieces and pat dry with a paper towel.",
+      "Heat the oil in a pan, fry the tofu on both sides until golden, and remove.",
+      "In the same pan, fry the eggs until the yolks are runny or fully cooked.",
+      "Return the tofu to the pan, add the soy sauce, water, minced garlic, and sugar, top with the onion and green onion, and simmer over low heat.",
+      "When the sauce has reduced, add the fried eggs, simmer for 1–2 more minutes, and finish with sesame oil and sesame seeds."
+    ]
+  },
+  {
+    "id": "EggBagel",
+    "title": "Egg Bagel",
+    "cookTime": 10,
+    "difficulty": "easy",
+    "description": "An egg bagel is a hearty sandwich made by filling a chewy bagel with soft eggs and cheese. It's made with simple ingredients but is very filling, making it great for breakfast or brunch.",
+    "ingredients": [
+      "1 bagel",
+      "2 eggs",
+      "1 slice of cheese",
+      "1 tbsp butter",
+      "1 tbsp mayonnaise",
+      "A pinch of salt",
+      "A pinch of pepper"
+    ],
+    "steps": [
+      "Slice the bagel in half and toast until golden.",
+      "Melt the butter in a pan, fry the eggs to your liking, and season with salt and pepper.",
+      "Spread mayonnaise on the inside of the toasted bagel.",
+      "Add the cheese and fried eggs, then close the bagel.",
+      "Cut in half and enjoy while warm."
+    ]
+  },
+  {
+    "id": "EggCurry",
+    "title": "Egg Curry",
+    "cookTime": 30,
+    "difficulty": "easy",
+    "description": "Egg curry is a hearty one-bowl dish of tender boiled eggs in a rich curry sauce. The eggs soak up the flavor of the curry for a mild yet deep taste, and just a few simple ingredients make a satisfying meal.",
+    "ingredients": [
+      "1 bowl of rice",
+      "2 boiled eggs",
+      "1/2 onion",
+      "1 serving of curry powder or curry roux",
+      "400ml water",
+      "1 tbsp cooking oil",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Thinly slice the onion.",
+      "Heat the oil in a pan and sauté the onion until translucent.",
+      "Add the water, bring to a boil, then add the curry powder or roux and stir until dissolved.",
+      "Add the boiled eggs and simmer over low heat for 3–5 more minutes so the curry soaks into the eggs.",
+      "Spoon the curry and eggs over warm rice and sprinkle with parsley to finish."
+    ]
+  },
+  {
+    "id": "EggPorkBraised",
+    "title": "Braised Pork and Eggs",
+    "cookTime": 40,
+    "difficulty": "medium",
+    "description": "Braised pork and eggs is a hearty side dish of tender boiled eggs and pork slowly simmered in a sweet and savory soy sauce glaze. The rich flavor of the pork and the sauce soaked into the eggs go perfectly with warm rice.",
+    "ingredients": [
+      "4 boiled eggs",
+      "300g pork shoulder",
+      "1/2 onion",
+      "1 green onion",
+      "1 tbsp minced garlic",
+      "5 tbsp soy sauce",
+      "300ml water",
+      "1 tbsp sugar",
+      "2 tbsp cooking wine (mirin)",
+      "1 tsp sesame oil",
+      "A pinch of sesame seeds"
+    ],
+    "steps": [
+      "Cut the pork into bite-sized pieces, and cut the onion and green onion into medium pieces.",
+      "Brown the pork in a pot, then add the onion and green onion and stir-fry together.",
+      "Add the soy sauce, water, cooking wine, sugar, and minced garlic, and bring to a boil.",
+      "Add the boiled eggs and simmer over low heat for 20–30 minutes so the sauce soaks in evenly.",
+      "When the sauce has reduced, finish with sesame oil and sesame seeds."
+    ]
+  },
+  {
+    "id": "HamTomatoOmelette",
+    "title": "Ham and Tomato Omelette",
+    "cookTime": 15,
+    "difficulty": "medium",
+    "description": "A ham and tomato omelette is a hearty brunch dish made with soft eggs, ham, and tomato. Salty ham and fresh tomato give it great flavor, and just a few simple ingredients make a nutritious meal.",
+    "ingredients": [
+      "3 eggs",
+      "50g ham",
+      "1 tomato",
+      "2 tbsp milk",
+      "1 tbsp butter",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little mozzarella cheese (optional)"
+    ],
+    "steps": [
+      "Dice the ham, and seed the tomato and cut it into small pieces.",
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Melt the butter in a pan and lightly sauté the ham and tomato.",
+      "Pour in the egg mixture and cook slowly over low heat, pushing the edges toward the center.",
+      "When the eggs are almost set, fold the omelette in half and transfer to a plate."
+    ]
+  },
+  {
+    "id": "CurryTornadoOmelette",
+    "title": "Curry Tornado Omelette",
+    "cookTime": 35,
+    "difficulty": "hard",
+    "description": "A curry tornado omelette is a soft, swirl-shaped omelette served over warm rice with rich curry. Fluffy eggs and deeply flavored curry make for a satisfying meal, and it's a favorite at cafés and brunch spots.",
+    "ingredients": [
+      "1 bowl of rice",
+      "3 eggs",
+      "1 serving of curry",
+      "2 tbsp milk",
+      "1 tbsp butter",
+      "1 tbsp cooking oil",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Prepare the curry in advance and keep it warm.",
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Heat the butter and oil in a pan, pour in the egg mixture, and twist the center with chopsticks to form a tornado shape.",
+      "Put the rice on a plate and place the tornado omelette on top.",
+      "Pour the warm curry around the omelette and sprinkle with parsley to finish."
+    ]
+  },
+  {
+    "id": "OmeletteRice",
+    "title": "Omelette Rice",
+    "cookTime": 30,
+    "difficulty": "hard",
+    "description": "Omelette rice is a dish of soft omelette placed over warm rice and served with a rich demi-glace or cream sauce around it. Moist eggs and a rich sauce create a smooth, deep flavor, making it a popular dish at restaurants and brunch cafés.",
+    "ingredients": [
+      "1 bowl of rice",
+      "3 eggs",
+      "2 tbsp milk",
+      "1 tbsp butter",
+      "1 tbsp cooking oil",
+      "150ml demi-glace or cream sauce",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley (optional)"
+    ],
+    "steps": [
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Melt the butter in a pan, pour in the egg mixture, and gently cook over low heat to make an omelette.",
+      "Put warm rice on a plate and place the omelette on top.",
+      "Warm the demi-glace or cream sauce and pour it around the rice.",
+      "Sprinkle with parsley to finish."
+    ]
+  },
+  {
+    "id": "AvocadoEggSandwich",
+    "title": "Avocado Egg Sandwich",
+    "cookTime": 10,
+    "difficulty": "easy",
+    "description": "An avocado egg sandwich is an easy sandwich that combines creamy avocado with a fried egg with a runny yolk. Its soft texture and mild flavor make it a satisfying breakfast or brunch.",
+    "ingredients": [
+      "2 slices of bread",
+      "1 egg",
+      "1/2 avocado",
+      "1 tbsp mayonnaise",
+      "A little butter",
+      "A pinch of salt",
+      "A pinch of pepper"
+    ],
+    "steps": [
+      "Thinly slice the avocado or lightly mash it with a fork.",
+      "Fry the egg in a pan until the yolk is runny, and season with salt and pepper.",
+      "Butter the bread and toast until golden.",
+      "Spread mayonnaise on the bread and top with the avocado and fried egg to finish."
+    ]
+  },
+  {
+    "id": "EggInHell",
+    "title": "Eggs in Purgatory",
+    "cookTime": 30,
+    "difficulty": "medium",
+    "description": "Eggs in Purgatory (also called Egg in Hell) is an Italian-style dish of eggs cooked in a spicy tomato sauce. The tangy tomato and soft, runny eggs make it great for brunch or a light meal. Serve with a baguette or bread to enjoy every last bit of the sauce.",
+    "ingredients": [
+      "2 eggs",
+      "200g tomato sauce",
+      "1/2 onion",
+      "1 tbsp minced garlic",
+      "1 tbsp olive oil",
+      "1 tsp paprika",
+      "A pinch of chili flakes (optional)",
+      "A pinch of salt",
+      "A pinch of pepper",
+      "A little parsley"
+    ],
+    "steps": [
+      "Heat the olive oil in a pan and sauté the onion and minced garlic.",
+      "Add the tomato sauce, paprika, salt, and pepper, and simmer for 3–5 minutes.",
+      "Make small wells in the sauce and crack the eggs into them.",
+      "Cover and cook until the eggs are soft or done to your liking.",
+      "Sprinkle with parsley and serve with a baguette or bread."
+    ]
+  },
+  {
+    "id": "ScrambledBurger",
+    "title": "Scrambled Egg Burger",
+    "cookTime": 20,
+    "difficulty": "medium",
+    "description": "A scrambled egg burger is a hearty burger made with soft scrambled eggs, crispy bacon, and fresh tomato. Rich eggs, salty bacon, and fresh tomato come together for a great breakfast or brunch.",
+    "ingredients": [
+      "1 burger bun",
+      "2 eggs",
+      "2 tbsp milk",
+      "2 slices of bacon",
+      "2–3 tomato slices",
+      "1 slice of cheese",
+      "1 tbsp butter",
+      "1 tbsp mayonnaise",
+      "A pinch of salt",
+      "A pinch of pepper"
+    ],
+    "steps": [
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Cook the bacon in a pan until crispy and remove, then melt the butter in the same pan and make scrambled eggs.",
+      "Slice the burger bun in half and toast until golden.",
+      "Spread mayonnaise on the bun, then layer the cheese, scrambled eggs, bacon, and tomato in that order.",
+      "Top with the other half of the bun to finish."
+    ]
+  },
+  {
+    "id": "ScrambledCroissant",
+    "title": "Scrambled Egg Croissant",
+    "cookTime": 15,
+    "difficulty": "easy",
+    "description": "A scrambled egg croissant is a sandwich made by filling a flaky croissant with plenty of soft scrambled eggs. The rich buttery aroma and moist eggs make it perfect for brunch or a quick breakfast.",
+    "ingredients": [
+      "1 croissant",
+      "2 eggs",
+      "2 tbsp milk",
+      "2 slices of bacon",
+      "1 slice of cheese",
+      "1 tbsp butter",
+      "1 tbsp mayonnaise",
+      "A pinch of salt",
+      "A pinch of pepper"
+    ],
+    "steps": [
+      "Whisk the eggs with the milk, salt, and pepper.",
+      "Cook the bacon in a pan until crispy and remove, then melt the butter in the same pan and make soft scrambled eggs.",
+      "Slice the croissant in half and lightly toast it to keep it crisp.",
+      "Spread mayonnaise inside the croissant, then add the cheese, scrambled eggs, and bacon in that order to finish."
+    ]
+  }
+]
