@@ -13,6 +13,7 @@ struct WebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
         // 배경을 앱과 맞추고(투명), 가로 스크롤은 막는다
         webView.isOpaque = false
         webView.backgroundColor = .clear
@@ -27,4 +28,21 @@ struct WebView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator()
+    }
+
+    final class Coordinator: NSObject, WKNavigationDelegate {
+        /// 본문의 링크(웹 · 메일)는 WebView 안에서 이동하지 않고 Safari · 메일 앱으로 연다
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
+            guard navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url else {
+                return .allow
+            }
+
+            await UIApplication.shared.open(url)
+
+            return .cancel
+        }
+    }
 }
