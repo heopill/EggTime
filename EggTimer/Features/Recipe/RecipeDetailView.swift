@@ -15,27 +15,32 @@ struct RecipeDetailView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
-                VStack(spacing: 0) {
-                    Image(recipe.imageName)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: proxy.size.width, height: 340)
-                        .clipped()
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Image(recipe.imageName)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: proxy.size.width, height: 340)
+                            .clipped()
 
-                    content
+                        content
+                    }
                 }
-            }
-            .ignoresSafeArea(edges: .top)
-            .overlay(alignment: .top) {
-                AppBarView(
-                    leadingIcon: "ChevronLeft",
-                    onLeadingTap: onBack,
-                    trailingIcon: recipe.isBookmarked ? "BookmarkSelected" : "BookmarkDefault",
-                    onTrailingTap: onBookmarkTap,
-                    // 사진 위에 올라가므로 아이콘 뒤에 반투명 배경을 둔다
-                    iconStyle: .overlay
-                )
+                .ignoresSafeArea(edges: .top)
+                .overlay(alignment: .top) {
+                    AppBarView(
+                        leadingIcon: "ChevronLeft",
+                        onLeadingTap: onBack,
+                        trailingIcon: recipe.isBookmarked ? "BookmarkSelected" : "BookmarkDefault",
+                        onTrailingTap: onBookmarkTap,
+                        // 사진 위에 올라가므로 아이콘 뒤에 반투명 배경을 둔다
+                        iconStyle: .overlay
+                    )
+                }
+
+                // 화면 맨 아래에 배너 광고를 둔다
+                BannerAdView(adUnit: .recipeDetail)
             }
         }
         .background(Color("Button"))
