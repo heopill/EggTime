@@ -11,6 +11,7 @@
 		BBA1FEF8303D87FB005117CE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA1FEF7303D87FB005117CE /* WidgetKit.framework */; };
 		BBA1FEFA303D87FB005117CE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA1FEF9303D87FB005117CE /* SwiftUI.framework */; };
 		BBA1FF09303D87FD005117CE /* EggTimerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BBA1FEF5303D87FB005117CE /* EggTimerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBAD0A032FFE000000000001 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BBAD0A022FFE000000000001 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0FF6F52FFD6A5600110682 /* ComposableArchitecture in Frameworks */,
+				BBAD0A032FFE000000000001 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +189,7 @@
 			name = EggTimer;
 			packageProductDependencies = (
 				BB0FF6F42FFD6A5600110682 /* ComposableArchitecture */,
+				BBAD0A022FFE000000000001 /* GoogleMobileAds */,
 			);
 			productName = EggTimer;
 			productReference = BB0FF6D62FFAB2EB00110682 /* EggTimer.app */;
@@ -271,6 +274,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BB0FF6F32FFD6A5600110682 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				BBAD0A012FFE000000000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BB0FF6D72FFAB2EB00110682 /* Products */;
@@ -713,6 +717,14 @@
 			traits = (
 			);
 		};
+		BBAD0A012FFE000000000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -720,6 +732,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB0FF6F32FFD6A5600110682 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		BBAD0A022FFE000000000001 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBAD0A012FFE000000000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
