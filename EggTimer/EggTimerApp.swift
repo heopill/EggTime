@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import UserNotifications
 import AudioToolbox
+import GoogleMobileAds
 
 // 포그라운드에서도 시스템 배너를 띄우기 위한 알림 델리게이트
 final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -17,6 +18,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         UNUserNotificationCenter.current().delegate = self
+
+        // 배너 광고를 띄우기 전에 AdMob SDK를 초기화한다
+        MobileAds.shared.start(completionHandler: nil)
 
         return true
     }

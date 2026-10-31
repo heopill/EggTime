@@ -31,23 +31,28 @@ struct TimerView: View {
                     // 배경 물결 장식 (상단 중앙 고정, 좌우로 흔들리는 애니메이션)
                     waterBackground(scale: heightRatio)
 
-                    // 타이머 콘텐츠 - 피그마 기준(너비 375, mini 사이즈)으로 배치한 뒤 전체를 높이 비율로 확대하고,
-                    // SafeArea 중앙에 배치한다. (egg·버튼·글자·간격·여백이 모두 같은 비율로 커진다)
                     VStack(spacing: 0) {
-                        timerSection
+                        // 상단 SafeArea 바로 아래에 배너 광고를 둔다
+                        BannerAdView(adUnit: .home)
 
-                        EggInfoView(selection: $store.selectedEgg, isSwipeDisabled: store.cookingState != .idle)
-                            .padding(.top, 16)
+                        // 타이머 콘텐츠 - 피그마 기준(너비 375, mini 사이즈)으로 배치한 뒤 전체를 높이 비율로 확대하고,
+                        // 배너 아래 남은 영역 중앙에 배치한다. (egg·버튼·글자·간격·여백이 모두 같은 비율로 커진다)
+                        VStack(spacing: 0) {
+                            timerSection
 
-                        // 피그마 기준 dots↔버튼 간격 83 (scaleEffect로 함께 확대된다)
-                        Spacer()
-                            .frame(height: 83)
+                            EggInfoView(selection: $store.selectedEgg, isSwipeDisabled: store.cookingState != .idle)
+                                .padding(.top, 16)
 
-                        controlButtons
+                            // 피그마 기준 dots↔버튼 간격 83 (scaleEffect로 함께 확대된다)
+                            Spacer()
+                                .frame(height: 83)
+
+                            controlButtons
+                        }
+                        .frame(width: 375)
+                        .scaleEffect(heightRatio, anchor: .center)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .frame(width: 375)
-                    .scaleEffect(heightRatio, anchor: .center)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .tabItem {

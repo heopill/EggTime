@@ -38,6 +38,9 @@ struct SoundModeView: View {
                 .padding(.horizontal, 20)
 
                 Spacer()
+
+                // 화면 맨 아래에 배너 광고를 둔다
+                BannerAdView(adUnit: .setting)
             }
         }
         .toolbar(.hidden, for: .navigationBar)
