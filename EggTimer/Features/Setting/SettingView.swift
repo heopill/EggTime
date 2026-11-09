@@ -15,6 +15,8 @@ struct SettingView: View {
     @State private var isMailUnavailableAlertPresented = false
     // 문의 정보 복사 완료 토스트 표시 여부
     @State private var isCopiedToastPresented = false
+    // 배너 광고와 하단 탭바 사이 간격
+    private let bannerBottomSpacing: CGFloat = 10
 
     var body: some View {
         NavigationStack(path: $store.path) {
@@ -22,17 +24,26 @@ struct SettingView: View {
                 Color(.background)
                     .ignoresSafeArea()
 
-                VStack(spacing: 16) {
-                    AppBarView(title: String(localized: "Settings", table: "Setting"))
-
+                VStack(spacing: 0) {
                     VStack(spacing: 16) {
-                        personalSection
-                        appSection
-                        contactSection
-                    }
-                    .padding(.horizontal, 20)
+                        AppBarView(title: String(localized: "Settings", table: "Setting"))
 
-                    Spacer()
+                        // 작은 화면(SE 등)에서 메뉴가 배너 광고에 밀리지 않도록, 넘칠 때만 스크롤되게 감싼다
+                        ScrollView {
+                            VStack(spacing: 16) {
+                                personalSection
+                                appSection
+                                contactSection
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 16)
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
+                    }
+
+                    // 하단 탭바 위에 간격을 두고 배너 광고를 둔다
+                    BannerAdView(adUnit: .setting)
+                        .padding(.bottom, bannerBottomSpacing)
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
@@ -77,11 +88,11 @@ struct SettingView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: isMailUnavailableAlertPresented)
-        // 정보 복사 완료 토스트 (하단, 잠시 후 자동으로 사라짐)
+        // 정보 복사 완료 토스트 (하단 배너 광고 위, 잠시 후 자동으로 사라짐)
         .overlay(alignment: .bottom) {
             if isCopiedToastPresented {
                 ToastMessageView(message: String(localized: "Info copied", table: "Setting"))
-                    .padding(.bottom, 24)
+                    .padding(.bottom, BannerAdView.height + bannerBottomSpacing + 24)
                     .transition(.opacity)
             }
         }
